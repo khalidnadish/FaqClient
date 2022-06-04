@@ -1,0 +1,53 @@
+.timeline_div .icon_size {
+  font-size: 100px;
+  /* border-color: #ffc500; */
+  /* background-color: #ffc500 !important;  */
+  color: #ffc500;
+}
+
+.timeline_div .icon_desien {
+  font-size: 10px;
+  /* background-color: #ffc500 !important;  */
+  color: black;
+}
+.timeline_div .icon_desien_x {
+  font-size: 10px;
+  font-weight: 500;
+  color: red;
+  /* background-color: red !important; */
+}
+
+.timeline_div :global(.MuiTimelineConnector-root) {
+  background-color: #ffc500 !important;
+}
+.timeline_div {
+  top: 0;
+  left: 0;
+  margin-top: -20px;
+
+  max-height: 400px;
+}
+.main_timeline :global(.MuiTimelineItem-missingOppositeContent::before) {
+  display: none;
+}
+
+.profile_img {
+  margin-top: -10px;
+  clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
+}
+.timeline_div :global(.MuiTypography-root) {
+  padding-top: 0px;
+}
+.timeline_div .icon_size_first_color {
+  font-size: 26px;
+  color: black;
+}
+
+.timeline_div .icon_size_first {
+  font-size: 16px;
+  /* border-color: white; */
+  background-color: #eee;
+  margin-left: -7px !important;
+  text-align: center !important;
+  line-height: 12px;
+}

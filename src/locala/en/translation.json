@@ -1,0 +1,70 @@
+{
+  "about_me_title": "About Me",
+  "about_me_text1": "Reprehe nderit et labornderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco quis laborum ullamco ad consequat tempor sunt ullamco quis ad. Amet in mollit labore quis amet ad. Laborum aute pariatur eu consequat sit. Minim laborum culpa ad fugiat officia occaecat irure nostrud sunt id. sdfsfdfsdfsdfsdfsdfsdf ",
+  "about_me_text": "aboris co qunderit et lco qunderit et laboris laborum ullamco ad consequat tempor sunt ullamco quis laborum ullamco ad consequat tempor sunt ullamco quis ad. Amet in mollit labore quis amet ad. Laborum aute pariatur eu consequat sit. Minim laborum culpa ad fugiat officia occaecat irure nostrud sunt id. sdfsfdfsdfsdfsdfsdfsdf ",
+  "nav_menu_about": "Home",
+  "nav_menu_price": "Price",
+  "nav_menu_profile": "Profile",
+  "nav_menu_btn": "Hire Me",
+  "nav_menu_Task": "Task",
+  "nav_menu_consltation": "Consaltation",
+  "nav_menu_Parttime": "Part Time",
+
+  "main_info": {
+    "name": "Khalid Nadish",
+    "title": "Full Stack Developer - Desginer ",
+    "contact": "Contact"
+  },
+  "home_whyme": {
+    "maintitle": "why me ..",
+    "option1": {
+      "title": "Mony",
+      "subtitle": "Lower Price"
+    },
+    "option2": {
+      "title": "Delevry",
+      "subtitle": "100% OnTime"
+    },
+    "option3": {
+      "title": "Quality",
+      "subtitle": "Best Of The Best"
+    },
+    "option4": {
+      "title": "Flexibility",
+      "subtitle": "S111ure You geit iS You geit it"
+    }
+  },
+  "home_ido": {
+    "maintitle": "What Can I do ..",
+    "option1": {
+      "title": "ShowImagwing",
+      "subtitle": "Logo,Flyer,Socail Image,Identity"
+    },
+    "option2": {
+      "title": "Animation",
+      "subtitle": "Promo,Portofolio,Logo Animation"
+    },
+    "option3": {
+      "title": "Montag",
+      "subtitle": "Short-clip,Long-clip"
+    },
+    "option4": {
+      "title": "UI/UX",
+      "subtitle": "ShowImagw User Inteface,Snlyst User Experince"
+    },
+    "option5": {
+      "title": "Coding",
+      "subtitle": "Landing Page,Web App,Mobile App"
+    },
+    "option6": {
+      "title": "Analyst",
+      "subtitle": "Automation And Flocharting"
+    }
+  },
+  "skills_data": {
+    "DataBase": "Database Skill",
+    "Desinging": "Desging Skills",
+    "Codeing": "Codeing Skills",
+    "ui": "UI/UX Skills"
+  }
+}

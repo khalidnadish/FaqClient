@@ -1,0 +1,9 @@
+.MuiAppBar-root{
+    /* border-radius: 15px; */
+    background-color: orange !important;
+    color:black;
+    margin-bottom: 40px;
+}
+.MuiMenu-list{
+    color: black;
+}
