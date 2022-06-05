@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Box, styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import Faq from "../pages/HomeCompnent/faq/Faq";
 
 function Rigthside() {
@@ -14,9 +14,8 @@ function Rigthside() {
       // flex={2}
       sx={{ display: { xs: "block", sm: "block" }, maxWidth: { md: "100%" } }}
     >
-      <Faq />
+      <Faq lookup={"home"} />
     </Boxwraper>
   );
 }
-
 export default Rigthside;

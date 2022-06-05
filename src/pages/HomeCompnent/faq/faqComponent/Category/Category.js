@@ -1,63 +1,42 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Box, Stack } from "@mui/material";
-import styled from "@emotion/styled";
+import React, { useState } from "react";
+import { Box, IconButton, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { positions } from "@mui/system";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import { axios } from "../../../../../helper/axios/axios";
-import Loader from "../../../../../helper/Loader";
-
-const AvatarImg = styled(Box)({
-  position: "absolute",
-  top: "50%",
-  width: "40px",
-  height: "40px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  border: "3px solid #409eff",
-  borderRadius: "2000px",
-  left: "-20px",
-  marginTop: "-20px",
-  background: "#fff",
-  fontSize: "20px",
-  color: "#409eff",
-  fontWeight: "700",
-});
+import { BsSearch } from "react-icons/bs";
+import Faq from "../../Faq";
 
 function Category({ categoryData }) {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
-  // console.log("categoryData from modle <<<<>>>> " + categoryData[1].catName);
-  const listRef = useRef();
-  // listRef.current.style.color = "white";
+  const [selectedFaq, setSelectedFaq] = useState(false);
 
-  // const changeColor = () => {
-  //   listRef.current.style.backgroundColor = "white";
-  // };
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex((index) => index);
+  const handleListItemClick = (index, catName) => {
+    setSelectedIndex(index);
+    setSelectedItem(catName);
+    setSelectedFaq(true);
     console.log(selectedIndex);
   };
 
-  useEffect(() => {
-    // console.log(listRef.current);
-  }, []);
-
-  // listbtn.current.styled
   return (
     <>
-      <h2>
-        {selectedIndex} {selectedItem}
-      </h2>
+      <Stack direction={"row"} alignItems={"center"}>
+        <IconButton size="small">
+          <BsSearch />
+        </IconButton>
+
+        <Typography
+          variant="body1"
+          color="initial"
+          sx={{ borderLeft: "1px solid lightgray", paddingLeft: "5px" }}
+        >
+          {selectedItem}
+        </Typography>
+      </Stack>
+
       <Box>
         <nav aria-label="main mailbox folders">
           <List>
@@ -71,11 +50,8 @@ function Category({ categoryData }) {
                 >
                   <ListItemButton
                     onClick={() => {
-                      setSelectedIndex(itemIndex);
-                      setSelectedItem(catitem.catName);
-                      console.log(selectedIndex);
+                      handleListItemClick(itemIndex, catitem.catName);
                     }}
-                    ref={listRef}
                     style={{
                       backgroundColor: "whitesmoke",
                     }}
@@ -85,9 +61,6 @@ function Category({ categoryData }) {
                       borderBottom: "1px solid lightgray",
                     }}
                   >
-                    {/* <ListItemIcon>
-                      <InboxIcon />
-                    </ListItemIcon> */}
                     <ListItemText disableTypography>
                       {itemIndex} {catitem.catName}
                     </ListItemText>
@@ -95,6 +68,9 @@ function Category({ categoryData }) {
                 </ListItem>
               );
             })}
+            {selectedFaq && <Faq lookup={selectedItem} />}
+
+            {selectedFaq && setSelectedFaq(false)}
           </List>
         </nav>
 
@@ -105,7 +81,3 @@ function Category({ categoryData }) {
 }
 
 export default Category;
-
-const ShowCat = ({ catdata }) => {
-  return <></>;
-};
