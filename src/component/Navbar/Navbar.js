@@ -1,25 +1,22 @@
+import React, { useState, useContext } from "react";
 import { DesktopMenu } from "./DesktopMenu";
-import { MobileMenu } from "./MobileMenu";
-import React, { useState } from "react";
+import { UserDetail } from "../../helper/userContext";
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
+import {
+  Box,
+  IconButton,
+  AppBar,
+  Avatar,
+  Button,
+  Toolbar,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-
-import { ButtonGroup, IconButton, Stack } from "@mui/material";
 import { t, useTranslation } from "react-i18next";
 import cookie from "js-cookie";
-import { FcBusinessman } from "react-icons/fc";
-import ShowModel from "../basicmodal/ShowModel";
+
 import MySearch from "./Search";
 
 const ResponsiveAppBar = () => {
@@ -27,7 +24,9 @@ const ResponsiveAppBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [t, i18n] = useTranslation();
   const [open, setOpen] = useState(false);
+  const [userName, setUserName] = useContext(UserDetail);
 
+  const value = useContext(UserDetail);
   const settings = [
     t("nav_menu_Task"),
     t("nav_menu_price"),
@@ -39,6 +38,7 @@ const ResponsiveAppBar = () => {
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+    setUserName("nadish");
   };
 
   const handleCloseNavMenu = () => {
@@ -67,10 +67,12 @@ const ResponsiveAppBar = () => {
             spacing={0.25}
             justifyContent={"space-between"}
             alignItems={"center"}
-            sx={{ flexDirection: { xs: "column", sm: "column", md: "row" } }}
+            sx={{
+              flexDirection: { xs: "column", sm: "column", md: "row" },
+              width: "100%",
+            }}
           >
-            <Box>
-              {/* <MobileMenu
+            {/* <MobileMenu
                 handleOpenNavMenu={handleOpenNavMenu}
                 anchorElNav={anchorElNav}
                 Boolean={Boolean}
@@ -78,72 +80,83 @@ const ResponsiveAppBar = () => {
                 t={t}
               /> */}
 
-              {/* *************************** * Desktop  */}
-              <Stack
-                direction="row"
-                spacing={0.25}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                // sx={{
-                //   flexDirection: { xs: "row", sm: "column", md: "row" },
-                // }}
-              >
-                <Box>
-                  <IconButton>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 35, height: 35 }}
-                    ></Avatar>
-                  </IconButton>
-                </Box>
-                <Box>
-                  <DesktopMenu handleCloseNavMenu={handleCloseNavMenu} />
-                </Box>
-              </Stack>
-            </Box>
-            <Box
-              sx={{
-                // display: "flex",
-                // flexGrow: 1,
-                gap: 0.5,
+            {/* *************************** * Desktop  */}
 
-                // alignItems: "center",
-              }}
+            <Stack
+              direction={"column"}
+              justifyContent="center"
+              alignItems={"center"}
             >
-              <Stack
-                direction="row"
-                spacing={1}
-                alignItems={"center"}
-                justifyContent={"flex-start"}
-              >
-                <MySearch />
-                <Box>
-                  <Button
-                    variant="contained"
-                    // fullWidth={true}
-                    color="warning"
-                    onClick={handleOpenUserMenu}
-                    sx={{
-                      // height: "100%",
-                      fontSize: { xs: ".7rem", sm: "1rem" },
-                    }}
-                    // endIcon={}
-                  >
-                    Quastion
-                    {/* {t("nav_menu_btn")} */}
-                  </Button>
-                </Box>
+              <Box>
+                <DesktopMenu handleCloseNavMenu={handleCloseNavMenu} />
+              </Box>
+            </Stack>
 
-                <Box>
-                  {i18n.language === "en" ? (
-                    <ToggaleArabic />
-                  ) : (
-                    <ToggaleEnglish />
-                  )}
-                </Box>
-              </Stack>
-            </Box>
+            {/* seacrh and buttn*/}
+            <Stack
+              direction="row"
+              spacing={1}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Box>
+                <MySearch />
+              </Box>
+              <Box>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={handleOpenUserMenu}
+                  fullWidth
+                  sx={{
+                    fontSize: { xs: ".7rem", sm: "1rem" },
+                  }}
+                  // endIcon={}
+                >
+                  Add Quastion
+                </Button>
+              </Box>
+            </Stack>
+
+            {/* avtar and user name  and Language*/}
+            <Stack
+              direction="row"
+              spacing={0.25}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Box>
+                <IconButton>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{ width: 45, height: 45 }}
+                  >
+                    {/* {userName} */}
+                  </Avatar>
+                </IconButton>
+              </Box>
+              <Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    padding: 0,
+                    fontWeight: "normal",
+                    fontSize: "1rem",
+                  }}
+                  color={"primary"}
+                >
+                  Welcome {userName}
+                </Typography>
+              </Box>
+              <Box>
+                {i18n.language === "en" ? (
+                  <ToggaleArabic />
+                ) : (
+                  <ToggaleEnglish />
+                )}
+              </Box>
+            </Stack>
           </Stack>
         </Toolbar>
       </Container>
@@ -168,7 +181,7 @@ function ToggaleArabic({}) {
       }}
     >
       <Avatar
-        sx={{ width: 20, height: 20 }}
+        sx={{ width: 30, height: 30 }}
         alt="khalid nadish"
         src={"assets/images/arFlag.svg"}
       ></Avatar>
@@ -192,7 +205,7 @@ function ToggaleEnglish({}) {
       }}
     >
       <Avatar
-        sx={{ width: 20, height: 20 }}
+        sx={{ width: 30, height: 30 }}
         alt="khalid nadish"
         src={"assets/images/enFlag.svg"}
       ></Avatar>

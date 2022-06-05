@@ -9,9 +9,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Login from "../pages/SignIn/Login";
 import { itemData } from "../helper/profileData";
-import IndexPage from "./IndexPage";
+import IndexPage from "../pages/IndexPage";
 import FaqId from "../pages/HomeCompnent/faq/FaqId";
-import Faq from "../pages/HomeCompnent/faq/Faq";
 
 const MyRoutes = () => {
   return (

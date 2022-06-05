@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, Paper, Stack } from "@mui/material";
 import styled from "@emotion/styled";
-import Faq from "../pages/HomeCompnent/faq/Faq";
-import Category from "../pages/HomeCompnent/faq/faqComponent/Category/Category";
+import Faq from "./HomeCompnent/faq/Faq";
+import Category from "./HomeCompnent/faq/faqComponent/Category/Category";
 import { axios } from "../helper/axios/axios";
 
 const Boxwraper = styled(Box)({
