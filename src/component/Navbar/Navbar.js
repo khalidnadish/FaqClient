@@ -23,19 +23,15 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [t, i18n] = useTranslation();
-  const [open, setOpen] = useState(false);
+
   const [userName, setUserName] = useContext(UserDetail);
 
-  const value = useContext(UserDetail);
   const settings = [
     t("nav_menu_Task"),
     t("nav_menu_price"),
     t("nav_menu_Parttime"),
   ];
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
     setUserName("nadish");
@@ -43,13 +39,6 @@ const ResponsiveAppBar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-  const controlModel = () => {
-    setOpen(true);
   };
 
   return (
@@ -211,29 +200,4 @@ function ToggaleEnglish({}) {
       ></Avatar>
     </IconButton>
   );
-}
-
-{
-  /* <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-               </Menu> */
 }

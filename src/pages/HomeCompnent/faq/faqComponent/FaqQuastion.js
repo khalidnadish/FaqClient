@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
+
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Avatar from "@mui/material/Avatar";
 import FaqAction from "./FaqAction";
-import { axios } from "../../../../helper/axios/axios";
+
 import { FcBusinessman } from "react-icons/fc";
 
-import {
-  Accordion,
-  Badge,
-  Chip,
-  Divider,
-  IconButton,
-  Stack,
-} from "@mui/material";
+import { Accordion, Chip, Divider, IconButton, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import FaqAnswerId from "../faqComponent/FaqAnswerId";
 import Loader from "../../../../helper/Loader";
@@ -29,8 +22,6 @@ export default function FaqQuastion({
   autherName,
   create_at,
 }) {
-  const [faqwithid, setFaqWithId] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
 
   const handleReply = (faqid) => {
@@ -50,23 +41,23 @@ export default function FaqQuastion({
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          fullWidth={true}
           // noWrap={false}
           sx={{
-            backgroundColor: "#E5E5E5",
-            justifyContent: "flex-start",
+            backgroundColor: "lighgray",
           }}
           onClick={() => {
             handleReply(faqid);
           }}
         >
-          <Box alignItems="center">
-            <Stack
-              direction="row"
-              spacing={1}
-              justifyContent="space-between"
-              alignItems="center"
-              divider={<Divider orientation="vertical" flexItem />}
-            >
+          <Stack
+            direction="row"
+            spacing={1}
+            justifyContent="space-between"
+            alignItems="center"
+            divider={<Divider orientation="vertical" flexItem />}
+          >
+            <Box>
               <IconButton
                 aria-label="delete"
                 size="small"
@@ -80,23 +71,19 @@ export default function FaqQuastion({
                   sx={{ width: 24, height: 24 }}
                 ></Avatar>
               </IconButton>
-              <Box>
-                <Chip
-                  size="small"
-                  label={autherName}
-                  variant="outlined"
-                  icon={<FcBusinessman />}
-                  // onClick={() => {
-                  //   faqHandle(fid);
-                  // }}
-                  // sx={{ marginLeft: 1 }}
-                />
-                <Typography sx={{ wordBreak: "break-word" }}>
-                  {Quastion}
-                </Typography>
-              </Box>
-            </Stack>
-          </Box>
+            </Box>
+            <Box>
+              <Chip
+                size="small"
+                label={autherName}
+                variant="outlined"
+                icon={<FcBusinessman />}
+              />
+              <Typography sx={{ wordBreak: "break-word" }}>
+                {Quastion}
+              </Typography>
+            </Box>
+          </Stack>
         </AccordionSummary>
         {showAnswer && (
           <AccordionDetails>

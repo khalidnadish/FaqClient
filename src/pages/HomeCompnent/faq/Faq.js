@@ -4,24 +4,30 @@ import Accordion from "@mui/material/Accordion";
 
 import Container from "@mui/material/Container";
 import Loader from "../../../helper/Loader";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, Chip, Divider } from "@mui/material";
+import { BsSearch } from "react-icons/bs";
 
 import "./faq.module.css";
 
 export default function Faq({ lookup, faqDataFromData, isLoading }) {
   return (
     <>
-      <Container fixed>
-        <h1>{lookup}</h1>
-        <Stack
-          direction={"row"}
-          sx={{ gap: 1, justifyContent: "space-between" }}
-        >
-          <Box>
-            {isLoading ? <ShowFaq faqdata={faqDataFromData} /> : <Loader />}
-          </Box>
-        </Stack>
-      </Container>
+      {/* <Container fixed> */}
+      <Chip
+        label={lookup}
+        icon={<BsSearch />}
+        color="success"
+        variant="outlined"
+        size="small"
+      />
+      <Divider sx={{ marginBottom: "15px", marginTop: "10px" }}></Divider>
+
+      {/* <Stack direction={"row"} sx={{ gap: 1, justifyContent: "space-between" }}> */}
+      {/* <Box> */}
+      {isLoading ? <ShowFaq faqdata={faqDataFromData} /> : <Loader />}
+      {/* </Box> */}
+      {/* </Stack> */}
+      {/* </Container> */}
     </>
   );
 }

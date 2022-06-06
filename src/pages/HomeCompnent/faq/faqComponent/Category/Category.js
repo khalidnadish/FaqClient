@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, IconButton, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -7,18 +7,21 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { BsSearch } from "react-icons/bs";
+import { FaqDetail } from "../../../../../helper/FAQContext";
 import Faq from "../../Faq";
 
 function Category({ categoryData }) {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
+  const { filterName, setFilterName, setFilterCode } = useContext(FaqDetail);
 
   const handleListItemClick = (index, catName) => {
     setSelectedIndex(index);
     setSelectedItem(catName);
+    setFilterName(catName);
+    setFilterCode(index + 1);
     setSelectedFaq(true);
-    console.log(selectedIndex);
   };
 
   return (
