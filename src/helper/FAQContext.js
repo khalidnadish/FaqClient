@@ -5,7 +5,7 @@ export const FaqDetail = createContext();
 
 export const FAQProvider = (props) => {
   const [filterName, setFilterName] = useState("ALL");
-  const [filterCode, setFilterCode] = useState(2);
+  const [filterCode, setFilterCode] = useState(1);
 
   return (
     <FaqDetail.Provider

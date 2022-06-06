@@ -1,10 +1,11 @@
 import React from "react";
 import { FcFaq } from "react-icons/fc";
 import { FcCalendar } from "react-icons/fc";
-import { FcBusinessman } from "react-icons/fc";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import {
   AccordionActions,
+  Avatar,
   Badge,
   Chip,
   Divider,
@@ -12,11 +13,11 @@ import {
   Stack,
   Tooltip,
 } from "@mui/material";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FcFeedback } from "react-icons/fc";
 import { FcBookmark } from "react-icons/fc";
 import { FaRegEdit } from "react-icons/fa";
-import { Box } from "@mui/system";
+import { green, pink } from "@mui/material/colors";
 
 function FaqAction({ answerCount, faqid, autherName, create_at }) {
   const FaqIdRoute = useNavigate();
@@ -31,6 +32,7 @@ function FaqAction({ answerCount, faqid, autherName, create_at }) {
       height: 12,
       borderRadius: "7px",
       fontSize: "8px",
+      bgcolor: pink[500],
     },
   };
   const chekbtn = (msg) => {};
@@ -95,7 +97,17 @@ function FaqAction({ answerCount, faqid, autherName, create_at }) {
               chekbtn("favorate");
             }}
           >
-            <FcBookmark color="action" size="1em" sx={badgeStyle} />
+            <Avatar
+              sx={{
+                width: 20,
+                height: 20,
+                bgcolor: pink[500],
+                fontSize: ".8rem",
+              }}
+              variant="rounded"
+            >
+              <FavoriteIcon sx={{ fontSize: ".8rem" }} />
+            </Avatar>
           </IconButton>
         </Tooltip>
         <Tooltip title="Add Answer">
@@ -106,7 +118,17 @@ function FaqAction({ answerCount, faqid, autherName, create_at }) {
               chekbtn("Add ans");
             }}
           >
-            <FaRegEdit color="red" size="1em" />
+            <Avatar
+              sx={{
+                width: 20,
+                height: 20,
+                bgcolor: pink[500],
+                fontSize: ".8rem",
+              }}
+              variant="rounded"
+            >
+              <FaRegEdit size=".8rem" sx={badgeStyle} />
+            </Avatar>
           </IconButton>
         </Tooltip>
       </Stack>

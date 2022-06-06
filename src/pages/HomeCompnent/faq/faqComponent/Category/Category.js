@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Box, IconButton, Stack } from "@mui/material";
+import { Avatar, Box, Button, IconButton, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { BsSearch } from "react-icons/bs";
 import { FaqDetail } from "../../../../../helper/FAQContext";
+import { green, pink } from "@mui/material/colors";
 import Faq from "../../Faq";
 
 function Category({ categoryData }) {
@@ -16,17 +17,29 @@ function Category({ categoryData }) {
   const [selectedFaq, setSelectedFaq] = useState(false);
   const { filterName, setFilterName, setFilterCode } = useContext(FaqDetail);
 
+  const handleShowAll = () => {
+    setFilterCode(1);
+    setFilterName("Show all data");
+  };
   const handleListItemClick = (index, catName) => {
+    // e.preventDefault();
     setSelectedIndex(index);
     setSelectedItem(catName);
     setFilterName(catName);
-    setFilterCode(index + 1);
+    setFilterCode(index);
     setSelectedFaq(true);
   };
 
   return (
     <>
       <Stack direction={"row"} alignItems={"center"}>
+        <Button
+          onClick={() => {
+            handleShowAll();
+          }}
+        >
+          show all
+        </Button>
         <IconButton size="small">
           <BsSearch />
         </IconButton>
@@ -53,7 +66,7 @@ function Category({ categoryData }) {
                 >
                   <ListItemButton
                     onClick={() => {
-                      handleListItemClick(itemIndex, catitem.catName);
+                      handleListItemClick(catitem.catid, catitem.catName);
                     }}
                     style={{
                       backgroundColor: "whitesmoke",
@@ -65,7 +78,30 @@ function Category({ categoryData }) {
                     }}
                   >
                     <ListItemText disableTypography>
-                      {itemIndex} {catitem.catName}
+                      <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                      >
+                        <Box>
+                          <Typography variant="subtitle1" fontWeight={"normal"}>
+                            {catitem.catName}
+                          </Typography>
+                        </Box>
+                        <Box>
+                          <Avatar
+                            sx={{
+                              width: 20,
+                              height: 20,
+                              bgcolor: pink[500],
+                              fontSize: ".8rem",
+                            }}
+                            variant="rounded"
+                          >
+                            {catitem.faqrowcount}
+                          </Avatar>
+                        </Box>
+                      </Stack>
                     </ListItemText>
                   </ListItemButton>
                 </ListItem>

@@ -101,7 +101,8 @@ function IndexPage() {
       >
         <Box flex={4} sx={{ width: "70vw" }}>
           <Faq
-            lookup={filterName + "" + filterCode}
+            lookup={filterName}
+            filterRow={faqdata.length}
             faqDataFromData={faqdata}
             isLoading={isLoading}
           />

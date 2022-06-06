@@ -42,7 +42,6 @@ export default function FaqQuastion({
           aria-controls="panel1a-content"
           id="panel1a-header"
           fullWidth={true}
-          // noWrap={false}
           sx={{
             backgroundColor: "lighgray",
           }}
