@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { DesktopMenu } from "./DesktopMenu";
 import { UserDetail } from "../../helper/userContext";
+import AddIcon from "@mui/icons-material/Add";
 
 import {
   Box,
@@ -12,7 +13,9 @@ import {
   Container,
   Stack,
   Typography,
+  Fab,
 } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 import { t, useTranslation } from "react-i18next";
 import cookie from "js-cookie";
@@ -70,6 +73,11 @@ const ResponsiveAppBar = () => {
               /> */}
 
             {/* *************************** * Desktop  */}
+            <Box>
+              <Fab color="primary" aria-label="add">
+                <AddIcon />
+              </Fab>
+            </Box>
 
             <Stack
               direction={"column"}
@@ -92,18 +100,14 @@ const ResponsiveAppBar = () => {
                 <MySearch />
               </Box>
               <Box>
-                <Button
+                <IconButton
                   variant="contained"
                   color="warning"
                   onClick={handleOpenUserMenu}
-                  fullWidth
-                  sx={{
-                    fontSize: { xs: ".7rem", sm: "1rem" },
-                  }}
-                  // endIcon={}
+                  aria-label="delete"
                 >
-                  Add Quastion
-                </Button>
+                  <SearchIcon />
+                </IconButton>
               </Box>
             </Stack>
 

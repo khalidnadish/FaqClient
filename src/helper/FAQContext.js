@@ -2,6 +2,7 @@ import React, { useState, createContext } from "react";
 
 export const FaqDetail = createContext();
 // FaqDetail.displayName = "khalid nadish";
+FaqDetail.displayName = "FAQContext>>>";
 
 export const FAQProvider = (props) => {
   const [filterName, setFilterName] = useState("ALL");

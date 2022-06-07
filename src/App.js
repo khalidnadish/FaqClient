@@ -2,10 +2,10 @@ import React from "react";
 import ResponsiveAppBar from "./component/Navbar/Navbar";
 import { UserProvider } from "../src/helper/userContext";
 import { FAQProvider } from "../src/helper/FAQContext";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, Fab } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import * as Sentry from "@sentry/react";
-
+import AddIcon from "@mui/icons-material/Add";
 import MyRoutes from "./layout/MyRoutes";
 import Myfooter from "./component/footer/footer";
 import "./App.css";
@@ -32,7 +32,7 @@ function App() {
         <FAQProvider>
           <ThemeProvider theme={theme}>
             <ResponsiveAppBar />
-
+            <Box sx={{ position: "fixed", left: "3px", top: "80%" }}></Box>
             <Box m={4}>
               <Stack
                 direction={{ xs: "column", sm: "row" }}
