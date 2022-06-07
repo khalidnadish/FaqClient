@@ -6,12 +6,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { BsSearch } from "react-icons/bs";
+
 import { FaqDetail } from "../../../../../helper/FAQContext";
 import { green, pink } from "@mui/material/colors";
+
+import { RiSendPlaneFill } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
+import { BiMessageRoundedDots } from "react-icons/bi";
+
 import Faq from "../../Faq";
 
-function Category({ categoryData }) {
+function PepoleYouFollow({ categoryData }) {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
@@ -35,13 +40,13 @@ function Category({ categoryData }) {
       <Box sx={{ marginLeft: "7px", paddingTop: "7px" }}>
         <Button
           variant="outlined"
-          endIcon={<BsSearch />}
+          endIcon={<FaUsers />}
           fullWidth
           onClick={() => {
             handleShowAll();
           }}
         >
-          Show all
+          You Track
         </Button>
         <nav aria-label="main mailbox folders">
           <List>
@@ -63,33 +68,10 @@ function Category({ categoryData }) {
                       borderBottom: "1px solid lightgray",
                     }}
                   >
-                    <ListItemText disableTypography>
-                      <Stack
-                        direction={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                        sx={{ padding: "5px", fontSize: ".8rem" }}
-                      >
-                        <Box>
-                          <Typography variant="subtitle1" fontWeight={"normal"}>
-                            {catitem.catName}
-                          </Typography>
-                        </Box>
-                        <Box>
-                          <Avatar
-                            sx={{
-                              width: 20,
-                              height: 20,
-                              bgcolor: pink[500],
-                              fontSize: ".8rem",
-                            }}
-                            variant="rounded"
-                          >
-                            {catitem.faqrowcount}
-                          </Avatar>
-                        </Box>
-                      </Stack>
-                    </ListItemText>
+                    <ListData
+                      catitem={catitem.catName}
+                      rowcount={catitem.faqrowcount}
+                    />
                   </ListItemButton>
                 </ListItem>
               );
@@ -106,4 +88,51 @@ function Category({ categoryData }) {
   );
 }
 
-export default Category;
+export default PepoleYouFollow;
+
+function ListData({ catitem, rowcount }) {
+  return (
+    <ListItemText disableTypography>
+      <Stack
+        direction={"row"}
+        // alignItems={"center"}
+        justifyContent={"space-between"}
+        sx={{ padding: "5px", fontSize: ".8rem" }}
+      >
+        <Avatar
+          sx={{
+            width: 35,
+            height: 35,
+            fontSize: ".8rem",
+          }}
+          variant="circle"
+        >
+          {rowcount}
+        </Avatar>
+        <Box>
+          <Typography variant="subtitle1" fontWeight={"normal"}>
+            {catitem}
+          </Typography>
+        </Box>
+
+        <Stack
+          direction={"row"}
+          justifyContent="space-between"
+          // alignItems={"center"}
+        >
+          <Box>
+            <IconButton size="small" color="success">
+              <BiMessageRoundedDots size={15} />
+            </IconButton>
+          </Box>
+          <Divider orientation="vertical" flexItem />
+          <Box>
+            <IconButton size="small" color="primary">
+              <RiSendPlaneFill size={15} />
+            </IconButton>
+          </Box>
+        </Stack>
+      </Stack>
+    </ListItemText>
+  );
+}

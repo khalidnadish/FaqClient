@@ -3,6 +3,7 @@ import { Box, Paper, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 import Faq from "./HomeCompnent/faq/Faq";
 import Category from "./HomeCompnent/faq/faqComponent/Category/Category";
+import PepoleYouFollow from "./HomeCompnent/faq/faqComponent/FollowPepole/PepoleYouFollow";
 import { axios } from "../helper/axios/axios";
 import { FaqDetail } from "../helper/FAQContext";
 
@@ -86,19 +87,35 @@ function IndexPage() {
       <Stack
         sx={{
           flexDirection: "row",
-          gap: 4,
+          gap: 3,
           justifyContent: "space-between",
           alignItems: "flex-start",
 
           borderRadius: "8px",
           width: "100vw",
           padding: "15px",
-          width: "940px",
+          // width: "940px",
           margin: "0 auto",
           position: "relative",
           overflow: "auto",
         }}
       >
+        <Box flex={1}>
+          <Box
+            sx={{
+              position: "fixed",
+              alignItems: "center",
+              width: "14%",
+              border: ".5px solid lightgray",
+              borderRadius: "8px",
+              height: "70vh",
+              overflow: "auto",
+              padding: "2px",
+            }}
+          >
+            <PepoleYouFollow categoryData={categoryData} />
+          </Box>
+        </Box>
         <Box flex={4} sx={{ width: "70vw" }}>
           <Faq
             lookup={filterName}
