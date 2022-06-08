@@ -1,0 +1,325 @@
+import React, { useState, useRef, useEffect, useContext } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
+import { green, pink, blueGrey } from "@mui/material/colors";
+import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { UserDetail } from "../../../../helper/userContext";
+
+import {
+  Stack,
+  Divider,
+  Typography,
+  TextField,
+  Avatar,
+  IconButton,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80vw",
+
+  bgcolor: "background.paper",
+  overflow: "scroll",
+  height: "80vh",
+  display: "block",
+  padding: "8px",
+  borderRadius: "8px",
+
+  border: "1px solid #263238",
+  boxShadow: 24,
+  bgcolor: blueGrey[100],
+
+  overflow: "none",
+};
+
+const barStyleControl = {
+  bgcolor: blueGrey[300],
+
+  boxShadow: 1,
+  marginBottom: 3,
+  padding: 1,
+  // display: "flex",
+  justifyContent: "space-between",
+};
+
+const infotStyleControl = {
+  bgcolor: blueGrey[50],
+
+  width: "95%",
+  margin: "auto",
+  boxShadow: 1,
+
+  padding: 1,
+  display: "flex",
+  justifyContent: "space-between",
+  // justifyContent: "flex-end",
+};
+
+const styleBtn = {
+  bgcolor: blueGrey[200],
+  color: "white",
+
+  boxShadow: 1,
+
+  padding: 1,
+};
+
+const noteStyle = {
+  bgcolor: blueGrey[200],
+  color: blueGrey[900],
+  display: "flex",
+  direction: "RTL",
+  textAlign: "right",
+  width: "90%",
+  padding: 1,
+};
+const subNoteStyle = {
+  bgcolor: blueGrey[400],
+  color: blueGrey[900],
+  textAlign: "right",
+  width: "100%",
+  padding: "5px",
+  margin: "5px",
+};
+
+const contentStyleControl = {
+  bgcolor: blueGrey[50],
+
+  width: "95%",
+  margin: "auto",
+  boxShadow: 1,
+
+  padding: 1,
+  // display: "flex",
+  justifyContent: "space-between",
+  marginTop: "10px",
+};
+
+const quastionStyle = {
+  color: blueGrey[900],
+  textAlign: "right",
+  width: "100%",
+  padding: 1,
+  margin: "5px",
+  "&.:hover": {
+    background: "#FAFAFA",
+    outline: "1px solid #EEEEEE",
+  },
+};
+
+export default function FaqAddModel({ open, setOpen }) {
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={modalStyle}>
+          {/* Top bar Style */}
+          <TopBar
+            barStyleControl={barStyleControl}
+            handleClose={handleClose}
+            styleBtn={styleBtn}
+          />
+          <InfoArea />
+
+          <ContentArea />
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+function TopBar({ barStyleControl, handleClose, styleBtn }) {
+  const { userAvatar } = useContext(UserDetail);
+  return (
+    <Box sx={barStyleControl}>
+      <Stack
+        id="parentStack"
+        direction={"row"}
+        spacing={2}
+        justifyContent="space-between"
+        alignItems={"center"}
+      >
+        <Box>
+          <Avatar src={userAvatar}></Avatar>
+        </Box>
+        <Box>
+          <Button
+            size="small"
+            onClick={handleClose}
+            sx={styleBtn}
+            endIcon={<CloseIcon />}
+          >
+            Close
+          </Button>
+        </Box>
+      </Stack>
+    </Box>
+  );
+}
+
+function InfoArea() {
+  return (
+    <Box sx={infotStyleControl}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={2}
+        justifyContent="space-around"
+        divider={<Divider orientation="horizontal" />}
+      >
+        <ul style={noteStyle}>
+          <li style={subNoteStyle}>
+            <Typography>نصائح حول الحصول على إجابات جيدة بسرعة</Typography>
+          </li>
+          <li style={subNoteStyle}>
+            <Typography>تأكد من أن سؤالك لم يتم طرحه من قبل</Typography>
+          </li>
+          <li style={subNoteStyle}>
+            <Typography>يجب أن يكون سؤالك قصيرًا وواضحًا</Typography>
+          </li>
+          <li style={subNoteStyle}>
+            <Typography>
+              تحقق مرة أخرى من قواعد اللغة والإملاء واستخدم اللغة العربية الفصحى
+              الحديثة
+            </Typography>
+          </li>
+        </ul>
+      </Stack>
+    </Box>
+  );
+}
+
+function ContentArea() {
+  const [quastion, setQuastion] = useState("");
+  const [wordCount, setWordCount] = useState(0);
+  const faqRef = useRef();
+
+  const handleOnchange = (e) => {
+    setQuastion(e.target.value);
+    setWordCount(e.target.value.length);
+  };
+  useEffect(() => {
+    faqRef.current.focus();
+  }, []);
+
+  return (
+    <>
+      <Box sx={contentStyleControl}>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          // spacing={2}
+          justifyContent="space-between"
+          divider={<Divider orientation="horizontal" />}
+        >
+          <TextField
+            ref={faqRef}
+            id="faq"
+            required
+            variant="standard"
+            multiline
+            maxRows={4}
+            label="Tell me ? "
+            value={quastion}
+            sx={quastionStyle}
+            onChange={(e) => {
+              handleOnchange(e);
+            }}
+          />
+        </Stack>
+        <Stack
+          direction={"row"}
+          justifyContent="space-between"
+          sx={{ paddingLeft: "15px", paddingRight: "15px" }}
+        >
+          <Box>
+            <Stack
+              direction={"row"}
+              divider={<Divider orientation="vertical" flexItem />}
+              gap={1}
+            >
+              <IconButton aria-label="">
+                <AddPhotoAlternateOutlinedIcon />
+              </IconButton>
+
+              <IconButton aria-label="">
+                <LocalOfferOutlinedIcon />
+              </IconButton>
+            </Stack>
+          </Box>
+          <Box>
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: "normal", marginLeft: "12px" }}
+            >
+              chracter count :{wordCount}
+            </Typography>
+          </Box>
+        </Stack>
+      </Box>
+      <ActionArea setQuastion={setQuastion} />
+    </>
+  );
+}
+
+function ActionArea({ setQuastion }) {
+  return (
+    <>
+      <Box
+        sx={{
+          marginTop: "20px",
+          position: "fixed",
+          bottom: "19px",
+          marginLeft: "20px",
+          width: "100%",
+        }}
+      >
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          justifyContent="space-evenly"
+        >
+          <Box flex={3}>
+            <Button variant="outlined" fullWidth endIcon={<CheckCircleIcon />}>
+              Submit
+            </Button>
+          </Box>
+          <Box flex={5}>
+            <Button
+              endIcon={<BackspaceOutlinedIcon />}
+              variant="outlined"
+              color="warning"
+              onClick={() => {
+                setQuastion("");
+              }}
+              sx={{ marginLeft: "10px" }}
+            >
+              Clear
+            </Button>
+          </Box>
+        </Stack>
+      </Box>
+    </>
+  );
+}
+
+const handleEnter = (event) => {
+  if (event.key.toLowerCase() === "enter") {
+    const form = event.target.form;
+    const index = [...form].indexOf(event.target);
+    form.elements[index + 1].focus();
+    event.preventDefault();
+  }
+};

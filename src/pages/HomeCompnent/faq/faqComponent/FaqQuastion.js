@@ -41,7 +41,6 @@ export default function FaqQuastion({
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-          fullWidth={true}
           sx={{
             backgroundColor: "lighgray",
           }}

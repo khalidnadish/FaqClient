@@ -10,7 +10,6 @@ export const FAQProvider = (props) => {
 
   return (
     <FaqDetail.Provider
-      // value={{ count: count, setCount: setCount, percentage: percentage, setPercentage: setPercentage }}>
       value={{
         filterName: filterName,
         setFilterName: setFilterName,

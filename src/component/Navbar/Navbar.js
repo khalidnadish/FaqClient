@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import { DesktopMenu } from "./DesktopMenu";
 import { UserDetail } from "../../helper/userContext";
 import AddIcon from "@mui/icons-material/Add";
+import FaqAddModel from "../../pages/HomeCompnent/faq/AddFaq/FaqAddModel";
 
 import {
   Box,
   IconButton,
   AppBar,
   Avatar,
-  Button,
   Toolbar,
   Container,
   Stack,
@@ -23,17 +23,23 @@ import cookie from "js-cookie";
 import MySearch from "./Search";
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [open, setOpen] = useState(false);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const [t, i18n] = useTranslation();
 
-  const [userName, setUserName] = useContext(UserDetail);
+  const { userName, setUserName, userAvatar } = useContext(UserDetail);
+  console.log(userAvatar);
 
   const settings = [
     t("nav_menu_Task"),
     t("nav_menu_price"),
     t("nav_menu_Parttime"),
   ];
+
+  const handleaddQuastion = () => {
+    setOpen(true);
+  };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -45,26 +51,27 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar
-      position="sticky"
-      elevation={2}
-      sx={{
-        backgroundColor: "background.paper",
-      }}
-    >
-      <Container fixed>
-        <Toolbar disableGutters>
-          <Stack
-            direction="row"
-            spacing={0.25}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            sx={{
-              flexDirection: { xs: "column", sm: "column", md: "row" },
-              width: "100%",
-            }}
-          >
-            {/* <MobileMenu
+    <>
+      <AppBar
+        position="sticky"
+        elevation={2}
+        sx={{
+          backgroundColor: "background.paper",
+        }}
+      >
+        <Container fixed>
+          <Toolbar disableGutters>
+            <Stack
+              direction="row"
+              spacing={0.25}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              sx={{
+                flexDirection: { xs: "column", sm: "column", md: "row" },
+                width: "100%",
+              }}
+            >
+              {/* <MobileMenu
                 handleOpenNavMenu={handleOpenNavMenu}
                 anchorElNav={anchorElNav}
                 Boolean={Boolean}
@@ -72,88 +79,94 @@ const ResponsiveAppBar = () => {
                 t={t}
               /> */}
 
-            {/* *************************** * Desktop  */}
-            <Box>
-              <Fab color="primary" aria-label="add">
-                <AddIcon />
-              </Fab>
-            </Box>
-
-            <Stack
-              direction={"column"}
-              justifyContent="center"
-              alignItems={"center"}
-            >
+              {/* *************************** * Desktop  */}
               <Box>
-                <DesktopMenu handleCloseNavMenu={handleCloseNavMenu} />
-              </Box>
-            </Stack>
-
-            {/* seacrh and buttn*/}
-            <Stack
-              direction="row"
-              spacing={1}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Box>
-                <MySearch />
-              </Box>
-              <Box>
-                <IconButton
-                  variant="contained"
-                  color="warning"
-                  onClick={handleOpenUserMenu}
-                  aria-label="delete"
+                <Fab
+                  color="primary"
+                  aria-label="add"
+                  onClick={() => handleaddQuastion()}
                 >
-                  <SearchIcon />
-                </IconButton>
+                  <AddIcon />
+                </Fab>
               </Box>
-            </Stack>
 
-            {/* avtar and user name  and Language*/}
-            <Stack
-              direction="row"
-              spacing={0.25}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Box>
-                <IconButton>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{ width: 45, height: 45 }}
+              <Stack
+                direction={"column"}
+                justifyContent="center"
+                alignItems={"center"}
+              >
+                <Box>
+                  <DesktopMenu handleCloseNavMenu={handleCloseNavMenu} />
+                </Box>
+              </Stack>
+
+              {/* seacrh and buttn*/}
+              <Stack
+                direction="row"
+                spacing={1}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <Box>
+                  <MySearch />
+                </Box>
+                <Box>
+                  <IconButton
+                    variant="contained"
+                    color="warning"
+                    onClick={handleOpenUserMenu}
+                    aria-label="delete"
                   >
-                    {/* {userName} */}
-                  </Avatar>
-                </IconButton>
-              </Box>
-              <Box>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    padding: 0,
-                    fontWeight: "normal",
-                    fontSize: "1rem",
-                  }}
-                  color={"primary"}
-                >
-                  Welcome {userName}
-                </Typography>
-              </Box>
-              <Box>
-                {i18n.language === "en" ? (
-                  <ToggaleArabic />
-                ) : (
-                  <ToggaleEnglish />
-                )}
-              </Box>
+                    <SearchIcon />
+                  </IconButton>
+                </Box>
+              </Stack>
+
+              {/* avtar and user name  and Language*/}
+              <Stack
+                direction="row"
+                spacing={0.25}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <Box>
+                  <IconButton>
+                    <Avatar
+                      alt={userName}
+                      src={userAvatar}
+                      sx={{ width: 45, height: 45 }}
+                    >
+                      {/* {userName} */}
+                    </Avatar>
+                  </IconButton>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      padding: 0,
+                      fontWeight: "normal",
+                      fontSize: "1rem",
+                    }}
+                    color={"primary"}
+                  >
+                    Welcome {userName}
+                  </Typography>
+                </Box>
+                <Box>
+                  {i18n.language === "en" ? (
+                    <ToggaleArabic />
+                  ) : (
+                    <ToggaleEnglish />
+                  )}
+                </Box>
+              </Stack>
             </Stack>
-          </Stack>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <FaqAddModel open={open} setOpen={setOpen} />
+    </>
   );
 };
 export default ResponsiveAppBar;
