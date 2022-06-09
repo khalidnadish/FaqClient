@@ -1,50 +1,36 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Box, Paper, Stack } from "@mui/material";
-import styled from "@emotion/styled";
+import { Box, Stack } from "@mui/material";
+
 import Faq from "./HomeCompnent/faq/Faq";
 import Category from "./HomeCompnent/faq/faqComponent/Category/Category";
 import PepoleYouFollow from "./HomeCompnent/faq/faqComponent/FollowPepole/PepoleYouFollow";
 import { axios } from "../helper/axios/axios";
 import { FaqDetail } from "../helper/FAQContext";
-
-const Boxwraper = styled(Box)({
-  // p={2}
-  display: { xs: "block", sm: "block" },
-  maxWidth: { md: "80%" },
-  marginTop: "10px",
-});
-const CatWraper = styled(Paper)({
-  marginTop: "10px",
-  position: "fixed",
-  marginRight: 20,
-  marginBottom: "10px",
-  borderRadius: "8px",
-  backgroundColor: "somkewhite",
-  minWidth: "120px",
-  bgcolor: "background.paper",
-  border: "1px solid lightgray",
-  fontWeight: "normal",
-  // width: "20%",
-  height: "75vh",
-  overflow: "auto",
-});
+import { UserDetail } from "../helper/userContext";
+import { Boxwraper, CatWraper } from "./indexPageHelper";
 
 function IndexPage() {
   const [faqdata, setFaqdata] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const [flowerData, setFlowerData] = useState([]);
+
   const [isLoading, setIsloading] = useState(false);
   const { filterName, filterCode } = useContext(FaqDetail);
+
+  const { userName, setUserName, userAvatar, userId } = useContext(UserDetail);
 
   const getallFaq = async () => {
     try {
       const resposn = await Promise.all([
         axios.get("/faq"),
         axios.get("/faq/category"),
+        axios.get(`/user/showflower/${userId}`),
       ]);
 
       if (resposn) {
         setFaqdata((oldFaq) => resposn[0].data.data);
         setCategoryData((oldCat) => resposn[1].data);
+        setFlowerData(resposn[2].data);
         setIsloading((checkLoad) => !checkLoad);
       }
       setIsloading(true);
@@ -54,7 +40,6 @@ function IndexPage() {
   };
 
   const getFaqByGroup = async () => {
-    // alert("getFaqByGroup");
     try {
       const resposn = await Promise.all([
         axios.get(`/faq/bygroup/${filterCode}`),
@@ -83,7 +68,6 @@ function IndexPage() {
 
   return (
     <>
-      {/* <Boxwraper> */}
       <Stack
         sx={{
           flexDirection: "row",
@@ -94,7 +78,7 @@ function IndexPage() {
           borderRadius: "8px",
           width: "100vw",
           padding: "15px",
-          // width: "940px",
+
           margin: "0 auto",
           position: "relative",
           overflow: "auto",
@@ -113,7 +97,7 @@ function IndexPage() {
               padding: "2px",
             }}
           >
-            <PepoleYouFollow categoryData={categoryData} />
+            <PepoleYouFollow categoryData={flowerData} />
           </Box>
         </Box>
         <Box flex={4} sx={{ width: "70vw" }}>
@@ -125,7 +109,6 @@ function IndexPage() {
           />
         </Box>
         <Box flex={1}>
-          {/* <CatWraper> */}
           <Box
             sx={{
               position: "fixed",
@@ -140,10 +123,8 @@ function IndexPage() {
           >
             <Category categoryData={categoryData} />
           </Box>
-          {/* </CatWraper> */}
         </Box>
       </Stack>
-      {/* </Boxwraper> */}
     </>
   );
 }

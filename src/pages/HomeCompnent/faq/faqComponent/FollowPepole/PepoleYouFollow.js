@@ -22,9 +22,10 @@ function PepoleYouFollow({ categoryData }) {
   const [selectedFaq, setSelectedFaq] = useState(false);
   const { filterName, setFilterName, setFilterCode } = useContext(FaqDetail);
 
-  const handleShowAll = () => {
-    setFilterCode(1);
-    setFilterName("Show all data");
+  const handleShowUserFaq = () => {
+    alert("handleShowUserFaq");
+    // setFilterCode(1);
+    // setFilterName("Show all data");
   };
   const handleListItemClick = (index, catName) => {
     // e.preventDefault();
@@ -38,16 +39,28 @@ function PepoleYouFollow({ categoryData }) {
   return (
     <>
       <Box sx={{ marginLeft: "7px", paddingTop: "7px" }}>
-        <Button
-          variant="outlined"
-          endIcon={<FaUsers />}
-          fullWidth
-          onClick={() => {
-            handleShowAll();
-          }}
+        <Stack
+          direction={"row"}
+          spacing={0}
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ width: "100%" }} // divider={<Divider orientation="vertical" flexItem />}
         >
-          You Track
-        </Button>
+          <FaUsers
+            color={"blue"}
+            size={25}
+            flex={1}
+            style={{ margin: "auto" }}
+          />
+
+          <Typography variant="caption" textAlign={"left"} flex={4} ml={1}>
+            You Track
+          </Typography>
+          <Typography variant="caption" textAlign={"center"} flex={1}>
+            {categoryData.length}
+          </Typography>
+        </Stack>
+
         <nav aria-label="main mailbox folders">
           <List>
             {categoryData.map((catitem, itemIndex) => {
@@ -60,7 +73,9 @@ function PepoleYouFollow({ categoryData }) {
                 >
                   <ListItemButton
                     onClick={() => {
-                      handleListItemClick(catitem.catid, catitem.catName);
+                      handleShowUserFaq();
+
+                      // handleListItemClick(catitem.catid, catitem.catName);
                     }}
                     sx={{
                       padding: 0,
@@ -68,17 +83,14 @@ function PepoleYouFollow({ categoryData }) {
                       borderBottom: "1px solid lightgray",
                     }}
                   >
-                    <ListData
-                      catitem={catitem.catName}
-                      rowcount={catitem.faqrowcount}
-                    />
+                    <ListData catitem={catitem.username} />
                   </ListItemButton>
                 </ListItem>
               );
             })}
-            {selectedFaq && <Faq lookup={selectedItem} />}
+            {/* {selectedFaq && <Faq lookup={selectedItem} />} */}
 
-            {selectedFaq && setSelectedFaq(false)}
+            {/* {selectedFaq && setSelectedFaq(false)} */}
           </List>
         </nav>
 
@@ -100,38 +112,29 @@ function ListData({ catitem, rowcount }) {
         sx={{ padding: "5px", fontSize: ".8rem" }}
       >
         <Avatar
+          flex={1}
           sx={{
             width: 35,
             height: 35,
             fontSize: ".8rem",
           }}
           variant="circle"
-        >
-          {rowcount}
-        </Avatar>
-        <Box>
-          <Typography variant="subtitle1" fontWeight={"normal"}>
-            {catitem}
-          </Typography>
-        </Box>
+          alignItems={"center"}
+        ></Avatar>
 
-        <Stack
-          direction={"row"}
-          justifyContent="space-between"
-          // alignItems={"center"}
+        <Typography
+          variant="subtitle1"
+          fontWeight={"normal"}
+          flex={4}
+          ml={1}
+          alignItems={"center"}
         >
-          <Box>
-            <IconButton size="small" color="success">
-              <BiMessageRoundedDots size={15} />
-            </IconButton>
-          </Box>
-          <Divider orientation="vertical" flexItem />
-          <Box>
-            <IconButton size="small" color="primary">
-              <RiSendPlaneFill size={15} />
-            </IconButton>
-          </Box>
-        </Stack>
+          {catitem}
+        </Typography>
+
+        <IconButton size="small" color="primary" flex={1} alignItems={"center"}>
+          <RiSendPlaneFill size={15} />
+        </IconButton>
       </Stack>
     </ListItemText>
   );
