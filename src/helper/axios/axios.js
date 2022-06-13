@@ -11,7 +11,11 @@ if (mode === "production") {
 }
 
 export const axios = Axios.create({
+<<<<<<< HEAD
   baseURL: baseUR,
+=======
+  baseURL: "https://faqnadishserver.herokuapp.com/",
+>>>>>>> 0810507ed7bcc3ef9e6a04e99928ef4439c40a6d
   headers: { auth: "Faq Auth" },
   timeout: 0,
   params: { limit: 5 },
