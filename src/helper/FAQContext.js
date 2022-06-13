@@ -5,14 +5,14 @@ export const FaqDetail = createContext();
 FaqDetail.displayName = "FAQContext>>>";
 
 export const FAQProvider = (props) => {
-  const [filterName, setFilterName] = useState("ALL");
+  const [filterByCategory, setfilterByCategory] = useState("ALL");
   const [filterCode, setFilterCode] = useState(1);
 
   return (
     <FaqDetail.Provider
       value={{
-        filterName: filterName,
-        setFilterName: setFilterName,
+        filterByCategory: filterByCategory,
+        setfilterByCategory: setfilterByCategory,
         filterCode: filterCode,
         setFilterCode: setFilterCode,
       }}

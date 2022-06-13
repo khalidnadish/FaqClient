@@ -20,6 +20,7 @@ export default function FaqQuastion({
   count,
   faqid,
   autherName,
+  faqGroup,
   create_at,
 }) {
   const [showAnswer, setShowAnswer] = useState(false);

@@ -18,7 +18,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import FaqAnswerId from "../faqComponent/FaqAnswerId";
 import { pink, blueGrey } from "@mui/material/colors";
 import { FcFeedback } from "react-icons/fc";
-import { Badge, Divider, Stack, Tooltip, Button } from "@mui/material";
+import { Badge, Divider, Stack, Tooltip, Button, Chip } from "@mui/material";
 import { Box } from "@mui/system";
 import { CardActionArea } from "@mui/material";
 import RateReviewIcon from "@mui/icons-material/RateReview";
@@ -50,6 +50,7 @@ export default function FaqCrads({
   faqid,
   autherName,
   create_at,
+  faqGroup,
 }) {
   const [expanded, setExpanded] = React.useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -86,6 +87,7 @@ export default function FaqCrads({
           src={src}
           autherName={autherName}
           create_at={create_at}
+          faqGroup={faqGroup}
         />
         <MainCardImage />
         <MainCardContent Quastion={Quastion} />
@@ -108,7 +110,7 @@ export default function FaqCrads({
   );
 }
 
-const MainCardHeader = ({ src, autherName, create_at }) => {
+const MainCardHeader = ({ src, autherName, create_at, faqGroup }) => {
   return (
     <>
       <CardHeader
@@ -120,9 +122,13 @@ const MainCardHeader = ({ src, autherName, create_at }) => {
           ></Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <>
+            <Chip label={faqGroup} variant={"outlined"} color="info" />
+
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          </>
         }
         title={autherName}
         subheader={new Date(create_at).toDateString()}
@@ -170,7 +176,7 @@ function MainCardAction({ expanded, handleExpandClick, answerCount }) {
           <Tooltip title="Answer's">
             <Badge
               badgeContent={answerCount}
-              color="secondary"
+              color="info"
               max={999}
               // sx={{ fontSize: "1rem", height: 10 }}
               sx={badgeStyle}

@@ -13,9 +13,9 @@ function IndexPage() {
   const [flowerData, setFlowerData] = useState([]);
 
   const [isLoading, setIsloading] = useState(false);
-  const { filterName, filterCode } = useContext(FaqDetail);
+  const { filterByCategory, filterCode } = useContext(FaqDetail);
 
-  const { userName, setUserName, userAvatar, userId } = useContext(UserDetail);
+  const { userId } = useContext(UserDetail);
 
   const getallFaq = async () => {
     try {
@@ -95,7 +95,7 @@ function IndexPage() {
 
         <Box flex={4} sx={{ width: { xs: "100vw", sm: "80vw", md: "100vw" } }}>
           <MainFaq
-            filterName={filterName}
+            filterByCategory={filterByCategory}
             faqdata={faqdata}
             isLoading={isLoading}
           />
@@ -132,10 +132,10 @@ function PepoleYouTrack({ flowerData }) {
   );
 }
 
-function MainFaq({ filterName, faqdata, isLoading }) {
+function MainFaq({ filterByCategory, faqdata, isLoading }) {
   return (
     <Faq
-      lookup={filterName}
+      lookup={filterByCategory}
       filterRow={faqdata.length}
       faqDataFromData={faqdata}
       isLoading={isLoading}

@@ -20,18 +20,19 @@ function PepoleYouFollow({ categoryData }) {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
-  const { filterName, setFilterName, setFilterCode } = useContext(FaqDetail);
+  const { filterByCategory, setfilterByCategory, setFilterCode } =
+    useContext(FaqDetail);
 
   const handleShowUserFaq = () => {
     alert("handleShowUserFaq");
     // setFilterCode(1);
-    // setFilterName("Show all data");
+    // setfilterByCategory("Show all data");
   };
   const handleListItemClick = (index, catName) => {
     // e.preventDefault();
     setSelectedIndex(index);
     setSelectedItem(catName);
-    setFilterName(catName);
+    setfilterByCategory(catName);
     setFilterCode(index);
     setSelectedFaq(true);
   };
@@ -77,7 +78,6 @@ function PepoleYouFollow({ categoryData }) {
                     }}
                     sx={{
                       padding: 0,
-                      // backgroundColor: "whitesmoke",
                       borderBottom: "1px solid lightgray",
                     }}
                   >
@@ -107,7 +107,7 @@ function ListData({ catitem, rowcount }) {
         direction={"row"}
         // alignItems={"center"}
         justifyContent={"space-between"}
-        sx={{ padding: "5px", fontSize: ".8rem" }}
+        sx={{ padding: "5px" }}
       >
         <Avatar
           flex={1}
@@ -130,7 +130,7 @@ function ListData({ catitem, rowcount }) {
           {catitem}
         </Typography>
 
-        <IconButton size="small" color="primary" flex={1} alignItems={"center"}>
+        <IconButton size="small" color="info" alignItems="center">
           <RiSendPlaneFill size={15} />
         </IconButton>
       </Stack>

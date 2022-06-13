@@ -15,17 +15,18 @@ function Category({ categoryData }) {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
-  const { filterName, setFilterName, setFilterCode } = useContext(FaqDetail);
+  const { filterByCategory, setfilterByCategory, setFilterCode } =
+    useContext(FaqDetail);
 
   const handleShowAll = () => {
     setFilterCode(1);
-    setFilterName("Show all data");
+    setfilterByCategory("Show all data");
   };
   const handleListItemClick = (index, catName) => {
     // e.preventDefault();
     setSelectedIndex(index);
     setSelectedItem(catName);
-    setFilterName(catName);
+    setfilterByCategory(catName);
     setFilterCode(index);
     setSelectedFaq(true);
   };
