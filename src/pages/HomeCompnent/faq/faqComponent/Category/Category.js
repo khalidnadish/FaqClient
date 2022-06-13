@@ -59,7 +59,7 @@ function Category({ categoryData }) {
                     }}
                     sx={{
                       padding: 0,
-                      backgroundColor: "whitesmoke",
+                      // backgroundColor: "whitesmoke",
                       borderBottom: "1px solid lightgray",
                     }}
                   >

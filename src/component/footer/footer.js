@@ -37,7 +37,7 @@ function Myfooter() {
             justifyContent: "space-between",
           }}
         >
-          <Tooltip component={"div"} title={t("nav_menu_btn")}>
+          {/* <Tooltip component={"div"} title={t("nav_menu_btn")}>
             <Button
               variant="text"
               onClick={handleOpenUserMenu}
@@ -55,15 +55,15 @@ function Myfooter() {
             >
               <Typography>Hire me Per Hour</Typography>
             </Button>
-          </Tooltip>
-
-          <Tooltip component={"div"} title={"About me"}>
+          </Tooltip> */}
+          {/* <Tooltip component={"div"} title={"About me"}>
             <Button
               variant="outlined"
               endIcon={<FcBusinessman />}
               onClick={controlModel}
             ></Button>
-          </Tooltip>
+          </Tooltip> */}
+          devlopment time
         </Box>
         <ShowModel open={open} setOpen={setOpen} />
       </Box>

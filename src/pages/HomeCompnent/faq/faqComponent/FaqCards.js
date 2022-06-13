@@ -66,10 +66,12 @@ export default function FaqCrads({
   const cardStyle = {
     // minWidth: 700,
     width: "100%",
-
-    borderRadius: "1px solid black",
+    border: `3px solid #EAEAE9`,
+    // border: `.5px solid ${blueGrey[500]}`,
+    borderRadius: "8px",
     marginBottom: "15px",
-    backgroundColor: blueGrey[50],
+    // backgroundColor: "palette.primary.main",
+    // backgroundColor: "#F5F5F4",
   };
   return (
     <Stack

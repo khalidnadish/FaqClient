@@ -1,37 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserDetail } from "./helper/userContext";
 import ResponsiveAppBar from "./component/Navbar/Navbar";
-import { UserProvider } from "../src/helper/userContext";
-import { FAQProvider } from "../src/helper/FAQContext";
-import { Stack, Box } from "@mui/material";
+import { purple } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import { FAQProvider } from "../src/helper/FAQContext";
+import { Stack, Box, CssBaseline, Paper } from "@mui/material";
 
 import MyRoutes from "./layout/MyRoutes";
 import Myfooter from "./component/footer/footer";
 import { BrowserRouter } from "react-router-dom";
+
 import "./App.css";
 
-const theme = createTheme({
-  typography: {
-    allVariants: {
-      fontFamily: "Noto Kufi Arabic",
-      fontWeight: "bold",
-      textTransform: "none",
-      wordWrap: "break-word",
-      // fontSize: 16,
-    },
-    paper: {
-      background: "red",
-    },
-  },
-});
-
 function App() {
+  const { themeMode } = useContext(UserDetail);
+  const theme = createTheme({
+    palette: {
+      mode: themeMode,
+      primary: {
+        // Purple and green play nicely together.
+        main: purple[500],
+      },
+    },
+    typography: {
+      allVariants: {
+        fontFamily: "Noto Kufi Arabic",
+        fontWeight: "light",
+        textTransform: "none",
+        wordWrap: "break-word",
+        // fontSize: ".8rem",
+      },
+      paper: {
+        background: "red",
+      },
+    },
+  });
+
   return (
     <>
+      <CssBaseline />
       <BrowserRouter>
-        <UserProvider>
+        <ThemeProvider theme={theme}>
           <FAQProvider>
-            <ThemeProvider theme={theme}>
+            <Paper>
               <ResponsiveAppBar />
               <Box sx={{ position: "fixed", left: "3px", top: "80%" }}></Box>
               <Box m={4}>
@@ -44,9 +56,9 @@ function App() {
                 </Stack>
               </Box>
               <Myfooter />
-            </ThemeProvider>
+            </Paper>
           </FAQProvider>
-        </UserProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </>
   );

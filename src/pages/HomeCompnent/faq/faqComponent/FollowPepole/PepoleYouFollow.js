@@ -41,10 +41,10 @@ function PepoleYouFollow({ categoryData }) {
       <Box sx={{ marginLeft: "7px", paddingTop: "7px" }}>
         <Stack
           direction={"row"}
-          spacing={0}
+          spacing={1}
           justifyContent="space-between"
           alignItems="center"
-          sx={{ width: "100%" }} // divider={<Divider orientation="vertical" flexItem />}
+          // sx={{ width: "100%" }} // divider={<Divider orientation="vertical" flexItem />}
         >
           <FaUsers
             color={"blue"}
@@ -74,12 +74,10 @@ function PepoleYouFollow({ categoryData }) {
                   <ListItemButton
                     onClick={() => {
                       handleShowUserFaq();
-
-                      // handleListItemClick(catitem.catid, catitem.catName);
                     }}
                     sx={{
                       padding: 0,
-                      backgroundColor: "whitesmoke",
+                      // backgroundColor: "whitesmoke",
                       borderBottom: "1px solid lightgray",
                     }}
                   >

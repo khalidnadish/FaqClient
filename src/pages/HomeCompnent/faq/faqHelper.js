@@ -47,8 +47,8 @@ export const ShowFaqCard = ({ faqdata }) => {
 // style SX Var
 
 export const sx_HiDocumentSearch = {
-  bgcolor: green[500],
-  color: "white",
+  // bgcolor: green[500],
+  color: "primary.main",
   paddingLeft: "10px",
   paddingRight: "10px",
   width: "auto",

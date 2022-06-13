@@ -3,7 +3,7 @@ import React from "react";
 import Loader from "../../../helper/Loader";
 import { Stack, Chip, Divider } from "@mui/material";
 import { HiDocumentSearch } from "react-icons/hi";
-import { green } from "@mui/material/colors";
+
 import { GoCommentDiscussion } from "react-icons/go";
 import "./faq.module.css";
 import { ShowFaqCard, sx_HiDocumentSearch } from "./faqHelper";
@@ -11,19 +11,27 @@ import { ShowFaqCard, sx_HiDocumentSearch } from "./faqHelper";
 export default function Faq({ lookup, faqDataFromData, isLoading, filterRow }) {
   return (
     <>
-      <Stack direction={"row"} justifyContent={"space-between"}>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        sx={{
+          border: `1px solid #EAEAE9`,
+
+          borderRadius: "20px",
+        }}
+      >
         <Chip
           label={lookup}
           icon={
             <HiDocumentSearch
               size={20}
-              color="white"
+              color="red"
               fontSize={"large"}
               style={{ marginRight: "7px" }}
             />
           }
           sx={sx_HiDocumentSearch}
-          variant="containd"
+          variant="outlined"
         />
         <Chip
           label={filterRow}
@@ -34,7 +42,7 @@ export default function Faq({ lookup, faqDataFromData, isLoading, filterRow }) {
               style={{ marginRight: "7px" }}
             />
           }
-          sx={{ bgcolor: green[500], color: "white", width: "8em" }}
+          sx={{ bgcolor: "primary.main", color: "white", width: "8em" }}
           variant="containd"
         />
       </Stack>

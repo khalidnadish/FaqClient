@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import { green, pink, blueGrey } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
@@ -56,10 +56,12 @@ const infotStyleControl = {
   width: "95%",
   margin: "auto",
   boxShadow: 1,
-
-  padding: 1,
-  display: "flex",
+  padding: 2,
   justifyContent: "space-between",
+  textAlign: "right",
+  marginBottom: "10px",
+  border: "1px solid gray",
+
   // justifyContent: "flex-end",
 };
 
@@ -99,8 +101,6 @@ const contentStyleControl = {
 
   padding: 1,
   // display: "flex",
-  justifyContent: "space-between",
-  marginTop: "10px",
 };
 
 const quastionStyle = {
@@ -134,7 +134,7 @@ export default function FaqAddModel({ open, setOpen }) {
             handleClose={handleClose}
             styleBtn={styleBtn}
           />
-          <InfoArea />
+          <InfoArea sx={{ display: { xs: "none" } }} />
 
           <ContentArea />
         </Box>
@@ -174,30 +174,21 @@ function TopBar({ barStyleControl, handleClose, styleBtn }) {
 
 function InfoArea() {
   return (
-    <Box sx={infotStyleControl}>
+    <Box sx={{ display: { xs: "none", sm: "none", md: "block", lg: "block" } }}>
       <Stack
-        direction={{ xs: "column", sm: "row" }}
-        spacing={2}
-        justifyContent="space-around"
+        direction={"row"}
+        gap={3}
+        justifyContent="space-between"
         divider={<Divider orientation="horizontal" />}
+        sx={infotStyleControl}
       >
-        <ul style={noteStyle}>
-          <li style={subNoteStyle}>
-            <Typography>نصائح حول الحصول على إجابات جيدة بسرعة</Typography>
-          </li>
-          <li style={subNoteStyle}>
-            <Typography>تأكد من أن سؤالك لم يتم طرحه من قبل</Typography>
-          </li>
-          <li style={subNoteStyle}>
-            <Typography>يجب أن يكون سؤالك قصيرًا وواضحًا</Typography>
-          </li>
-          <li style={subNoteStyle}>
-            <Typography>
-              تحقق مرة أخرى من قواعد اللغة والإملاء واستخدم اللغة العربية الفصحى
-              الحديثة
-            </Typography>
-          </li>
-        </ul>
+        <Typography>نصائح حول الحصول على إجابات جيدة بسرعة</Typography>
+        <Typography>تأكد من أن سؤالك لم يتم طرحه من قبل</Typography>
+        <Typography>يجب أن يكون سؤالك قصيرًا وواضحًا</Typography>
+        <Typography>
+          تحقق مرة أخرى من قواعد اللغة والإملاء واستخدم اللغة العربية الفصحى
+          الحديثة
+        </Typography>
       </Stack>
     </Box>
   );
@@ -287,10 +278,7 @@ function ActionArea({ setQuastion }) {
           width: "100%",
         }}
       >
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          justifyContent="space-evenly"
-        >
+        <Stack direction={"row"} justifyContent="space-evenly">
           <Box flex={3}>
             <Button variant="outlined" fullWidth endIcon={<CheckCircleIcon />}>
               Submit

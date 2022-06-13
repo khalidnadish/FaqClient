@@ -1,0 +1,18 @@
+
+palette: {
+type: 'dark',
+primary: {
+light: myColors.grayLight,
+main: myColors.gray,
+dark: myColors.grayDark,
+},
+secondary: {
+light: myColors.whitesmoke,
+main: myColors.white,
+dark: myColors.snow,
+},
+info: {
+light: myColors.greenLight,
+main: myColors.green,
+dark: myColors.greenDark,
+}

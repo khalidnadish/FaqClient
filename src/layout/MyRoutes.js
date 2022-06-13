@@ -1,7 +1,6 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import Home from "../pages/HomeCompnent/Home";
 import Priceing from "../pages/Priceing/Priceing";
 import Clients from "../component/Showimage";
 import SingIn from "../pages/SignIn/SingIn";
@@ -17,7 +16,7 @@ const MyRoutes = () => {
     <>
       <Routes>
         <Route index element={<IndexPage />} />
-        <Route path="/About" element={<Home />} />
+        <Route path="/Home" element={<IndexPage />} />
 
         <Route path="/FaqId/:faqid" element={<FaqId />} />
 

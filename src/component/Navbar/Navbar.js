@@ -4,6 +4,7 @@ import { UserDetail } from "../../helper/userContext";
 import AddIcon from "@mui/icons-material/Add";
 import FaqAddModel from "../../pages/HomeCompnent/faq/AddFaq/FaqAddModel";
 
+import SettingsIcon from "@mui/icons-material/Settings";
 import {
   Box,
   IconButton,
@@ -12,18 +13,23 @@ import {
   Toolbar,
   Container,
   Stack,
-  Typography,
   Fab,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { t, useTranslation } from "react-i18next";
-import cookie from "js-cookie";
 
 import MySearch from "./Search";
+import SettingDrawer from "../settingDrawer/SettingDrawer";
+const fabStyle = {
+  position: "fixed",
+  bottom: 30,
+  left: 16,
+};
 
 const ResponsiveAppBar = () => {
   const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [t, i18n] = useTranslation();
@@ -52,6 +58,15 @@ const ResponsiveAppBar = () => {
 
   return (
     <>
+      <Fab
+        color="primary"
+        size={"large"}
+        aria-label="add"
+        onClick={() => handleaddQuastion()}
+        sx={fabStyle}
+      >
+        <AddIcon />
+      </Fab>
       <AppBar
         position="sticky"
         elevation={2}
@@ -67,34 +82,26 @@ const ResponsiveAppBar = () => {
               justifyContent={"space-between"}
               alignItems={"center"}
               sx={{
-                flexDirection: { xs: "column", sm: "column", md: "row" },
+                flexDirection: { xs: "column", sm: "row", md: "row" },
                 width: "100%",
               }}
             >
-              {/* <MobileMenu
-                handleOpenNavMenu={handleOpenNavMenu}
-                anchorElNav={anchorElNav}
-                Boolean={Boolean}
-                handleCloseNavMenu={handleCloseNavMenu}
-                t={t}
-              /> */}
-
-              {/* *************************** * Desktop  */}
-              <Box>
-                <Fab
-                  color="primary"
-                  aria-label="add"
-                  onClick={() => handleaddQuastion()}
-                >
-                  <AddIcon />
-                </Fab>
-              </Box>
-
               <Stack
-                direction={"column"}
-                justifyContent="center"
+                direction={"row"}
+                justifyContent="space-between"
                 alignItems={"center"}
               >
+                {/* <Box>
+                  <Fab
+                    color="primary"
+                    size={"small"}
+                    aria-label="add"
+                    onClick={() => handleaddQuastion()}
+                    sx={fabStyle}
+                  >
+                    <AddIcon />
+                  </Fab>
+                </Box> */}
                 <Box>
                   <DesktopMenu handleCloseNavMenu={handleCloseNavMenu} />
                 </Box>
@@ -120,17 +127,8 @@ const ResponsiveAppBar = () => {
                     <SearchIcon />
                   </IconButton>
                 </Box>
-              </Stack>
-
-              {/* avtar and user name  and Language*/}
-              <Stack
-                direction="row"
-                spacing={0.25}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
                 <Box>
-                  <IconButton>
+                  <IconButton onClick={() => setOpenDrawer(true)}>
                     <Avatar
                       alt={userName}
                       src={userAvatar}
@@ -140,7 +138,11 @@ const ResponsiveAppBar = () => {
                     </Avatar>
                   </IconButton>
                 </Box>
-                <Box>
+              </Stack>
+
+              {/* avtar and user name  and Language*/}
+
+              {/* <Box>
                   <Typography
                     variant="body1"
                     sx={{
@@ -152,69 +154,74 @@ const ResponsiveAppBar = () => {
                   >
                     Welcome {userName}
                   </Typography>
-                </Box>
-                <Box>
+                </Box> */}
+              {/* <Box>
                   {i18n.language === "en" ? (
                     <ToggaleArabic />
                   ) : (
                     <ToggaleEnglish />
                   )}
-                </Box>
-              </Stack>
+                </Box> */}
             </Stack>
           </Toolbar>
         </Container>
       </AppBar>
+
       <FaqAddModel open={open} setOpen={setOpen} />
+      <SettingDrawer
+        open={openDrawer}
+        setOpen={setOpenDrawer}
+        userName={userName}
+      />
     </>
   );
 };
 export default ResponsiveAppBar;
 
-function ToggaleArabic({}) {
-  const [t, i18n] = useTranslation();
-  return (
-    <IconButton
-      color="primary"
-      aria-label="upload picture"
-      variant="outlined"
-      size="small"
-      onClick={() => {
-        i18n.changeLanguage("ar");
-        document.body.dir = "rtl";
-        cookie.remove("i18next");
-        cookie.set("i18next", "ar");
-      }}
-    >
-      <Avatar
-        sx={{ width: 30, height: 30 }}
-        alt="khalid nadish"
-        src={"assets/images/arFlag.svg"}
-      ></Avatar>
-    </IconButton>
-  );
-}
+// function ToggaleArabic({}) {
+//   const [t, i18n] = useTranslation();
+//   return (
+//     <IconButton
+//       color="primary"
+//       aria-label="upload picture"
+//       variant="outlined"
+//       size="small"
+//       onClick={() => {
+//         i18n.changeLanguage("ar");
+//         document.body.dir = "rtl";
+//         cookie.remove("i18next");
+//         cookie.set("i18next", "ar");
+//       }}
+//     >
+//       <Avatar
+//         sx={{ width: 30, height: 30 }}
+//         alt="khalid nadish"
+//         src={"assets/images/arFlag.svg"}
+//       ></Avatar>
+//     </IconButton>
+//   );
+// }
 
-function ToggaleEnglish({}) {
-  const [t, i18n] = useTranslation();
-  return (
-    <IconButton
-      color="primary"
-      size="small"
-      aria-label="upload picture"
-      variant="outlined"
-      onClick={() => {
-        i18n.changeLanguage("en");
-        document.body.dir = "ltr";
-        cookie.remove("i18next");
-        cookie.set("i18next", "en");
-      }}
-    >
-      <Avatar
-        sx={{ width: 30, height: 30 }}
-        alt="khalid nadish"
-        src={"assets/images/enFlag.svg"}
-      ></Avatar>
-    </IconButton>
-  );
-}
+// function ToggaleEnglish({}) {
+//   const [t, i18n] = useTranslation();
+//   return (
+//     <IconButton
+//       color="primary"
+//       size="small"
+//       aria-label="upload picture"
+//       variant="outlined"
+//       onClick={() => {
+//         i18n.changeLanguage("en");
+//         document.body.dir = "ltr";
+//         cookie.remove("i18next");
+//         cookie.set("i18next", "en");
+//       }}
+//     >
+//       <Avatar
+//         sx={{ width: 30, height: 30 }}
+//         alt="khalid nadish"
+//         src={"assets/images/enFlag.svg"}
+//       ></Avatar>
+//     </IconButton>
+//   );
+// }
