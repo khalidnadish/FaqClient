@@ -8,11 +8,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
 import { FaqDetail } from "../../../../../helper/FAQContext";
-import { green, pink } from "@mui/material/colors";
 
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
-import { BiMessageRoundedDots } from "react-icons/bi";
 
 import Faq from "../../Faq";
 
@@ -65,10 +63,13 @@ function PepoleYouFollow({ categoryData }) {
         <nav aria-label="main mailbox folders">
           <List>
             {categoryData.map((catitem, itemIndex) => {
+              {
+                console.log(catitem.catid);
+              }
               return (
                 <ListItem
+                  key={catitem.id}
                   disablePadding
-                  key={catitem.catid}
                   size={"small"}
                   sx={{ padding: 0, fontSize: ".8rem" }}
                 >
@@ -117,7 +118,7 @@ function ListData({ catitem, rowcount }) {
             fontSize: ".8rem",
           }}
           variant="circle"
-          alignItems={"center"}
+          alignItems="center"
         ></Avatar>
 
         <Typography
@@ -125,7 +126,7 @@ function ListData({ catitem, rowcount }) {
           fontWeight={"normal"}
           flex={4}
           ml={1}
-          alignItems={"center"}
+          alignItems="center"
         >
           {catitem}
         </Typography>

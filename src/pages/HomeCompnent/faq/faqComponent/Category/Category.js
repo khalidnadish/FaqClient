@@ -66,9 +66,9 @@ function Category({ categoryData }) {
                   >
                     <ListItemText disableTypography>
                       <Stack
-                        direction={"row"}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
                         sx={{ padding: "5px", fontSize: ".8rem" }}
                       >
                         <Box>

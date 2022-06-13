@@ -58,24 +58,23 @@ const AvtarBox = styled(Box)({
 export default function FaqAnswerId({ id }) {
   const [faqwithid, setFaqWithId] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [avatar, setAvatar] = useState("");
 
   const getFaqId = async () => {
     try {
       const resposn = await axios.get(`faq/AnswerByfaqid/${id}`);
       if (resposn && resposn.data) {
-        console.log(resposn);
+        // console.log(resposn);
         setFaqWithId(resposn.data.data);
 
         setIsLoading(true);
-        console.log("replay :" + resposn.data);
+        // console.log("replay :" + resposn.data);
       }
     } catch (error) {
-      console.log("Error :", error);
+      // console.log("Error :", error);
     }
   };
-  console.log("data reply:" + faqwithid);
-  console.log(faqwithid);
+  // console.log("data reply:" + faqwithid);
+  // console.log(faqwithid);
 
   useEffect(() => {
     getFaqId();

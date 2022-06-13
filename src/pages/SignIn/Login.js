@@ -40,7 +40,7 @@ function Login() {
   };
 
   useEffect(() => {
-    console.log(reply);
+    // console.log(reply);
   }, [reply]);
   return (
     <>

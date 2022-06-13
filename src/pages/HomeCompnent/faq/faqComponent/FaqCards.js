@@ -140,12 +140,12 @@ const MainCardHeader = ({ src, autherName, create_at, faqGroup }) => {
 const MainCardImage = () => {
   return (
     <>
-      <CardMedia
+      {/* <CardMedia
       // component="img"
       // height="194"
       // image="/static/images/cards/paella.jpg"
       // alt="Paella dish"
-      />
+      /> */}
     </>
   );
 };
@@ -154,6 +154,14 @@ function MainCardContent({ Quastion }) {
   return (
     <CardContent>
       <Typography sx={{ wordBreak: "break-word" }}>{Quastion}</Typography>
+      <Button
+        component="span"
+        variant="outlined"
+        color="primary"
+        sx={{ float: "right", marginLeft: "25px" }}
+      >
+        <RateReviewIcon />
+      </Button>
     </CardContent>
   );
 }
@@ -162,12 +170,12 @@ function MainCardAction({ expanded, handleExpandClick, answerCount }) {
   return (
     <CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" component="span">
           <FavoriteIcon />
         </IconButton>
         <Divider orientation="vertical" flexItem />
 
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" component="span">
           <ShareIcon />
         </IconButton>
 
@@ -175,6 +183,7 @@ function MainCardAction({ expanded, handleExpandClick, answerCount }) {
         <Box sx={{ marginLeft: "15px" }}>
           <Tooltip title="Answer's">
             <Badge
+              component="span"
               badgeContent={answerCount}
               color="info"
               max={999}
@@ -190,19 +199,12 @@ function MainCardAction({ expanded, handleExpandClick, answerCount }) {
           </Tooltip>
         </Box>
 
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{ float: "right", marginLeft: "25px" }}
-        >
-          <RateReviewIcon />
-        </Button>
-
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          component="span"
         >
           <ExpandMoreIcon />
         </ExpandMore>

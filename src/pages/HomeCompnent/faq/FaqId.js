@@ -81,12 +81,12 @@ function FaqId() {
         setFaqWithId(resposn.data.data);
         setIsLoading(true);
         // getAnswerCountByfaqid();
-        console.log(resposn.data.data);
+        // console.log(resposn.data.data);
         // alert(rowcount[0].count);
         console.warn("row count :" + rowcount);
       }
     } catch (error) {
-      console.log("Error :", error);
+      // console.log("Error :", error);
     }
   };
 
@@ -99,7 +99,7 @@ function FaqId() {
       setRowcount(resposnCount.data.data);
       setIsCount(true);
     } catch (error) {
-      console.log("Error :", error);
+      // console.log("Error :", error);
     }
   };
 

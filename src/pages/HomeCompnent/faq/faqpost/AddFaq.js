@@ -43,7 +43,7 @@ function Addfaq() {
   };
 
   useEffect(() => {
-    console.log(reply);
+    // console.log(reply);
   }, [reply]);
 
   return (

@@ -114,8 +114,8 @@ function SettingDrawer({ open, setOpen }) {
                 <ListItemText>
                   <Stack
                     direction={"row"}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
+                    justifyContent="space-between"
+                    alignItems="center"
                   >
                     <ListItemIcon
                       sx={{
@@ -148,8 +148,8 @@ function SettingDrawer({ open, setOpen }) {
                 <ListItemText>
                   <Stack
                     direction={"row"}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
+                    justifyContent="space-between"
+                    alignItems="center"
                   >
                     <ListItemIcon
                       sx={{

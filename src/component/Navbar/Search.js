@@ -27,6 +27,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
+
   justifyContent: "center",
 }));
 
@@ -55,8 +56,8 @@ function MySearch() {
           <Stack
             direction="row"
             spacing={1}
-            justifyContent={"cenetr"}
-            alignItems={"center"}
+            justifyContent="cenetr"
+            alignItems="center"
             // sx={{ flexDirection: { xs: "column", sm: "row", md: "row" } }}
           >
             <SearchIconWrapper>

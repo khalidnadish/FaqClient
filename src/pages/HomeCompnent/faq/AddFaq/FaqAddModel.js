@@ -152,7 +152,7 @@ function TopBar({ barStyleControl, handleClose, styleBtn }) {
         direction={"row"}
         spacing={2}
         justifyContent="space-between"
-        alignItems={"center"}
+        alignItems="center"
       >
         <Box>
           <Avatar src={userAvatar}></Avatar>

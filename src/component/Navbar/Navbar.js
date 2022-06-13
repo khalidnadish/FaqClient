@@ -35,7 +35,7 @@ const ResponsiveAppBar = () => {
   const [t, i18n] = useTranslation();
 
   const { userName, setUserName, userAvatar } = useContext(UserDetail);
-  console.log(userAvatar);
+  // console.log(userAvatar);
 
   const settings = [
     t("nav_menu_Task"),
@@ -79,8 +79,8 @@ const ResponsiveAppBar = () => {
             <Stack
               direction="row"
               spacing={0.25}
-              justifyContent={"space-between"}
-              alignItems={"center"}
+              justifyContent="space-between"
+              alignItems="center"
               sx={{
                 flexDirection: { xs: "column", sm: "row", md: "row" },
                 width: "100%",
@@ -89,7 +89,7 @@ const ResponsiveAppBar = () => {
               <Stack
                 direction={"row"}
                 justifyContent="space-between"
-                alignItems={"center"}
+                alignItems="center"
               >
                 {/* <Box>
                   <Fab
@@ -112,7 +112,7 @@ const ResponsiveAppBar = () => {
                 direction="row"
                 spacing={1}
                 justifyContent={"space-between"}
-                alignItems={"center"}
+                alignItems="center"
               >
                 <Box>
                   <MySearch />
