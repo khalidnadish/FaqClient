@@ -15,6 +15,6 @@ export const axios = Axios.create({
 
   headers: { auth: "Faq Auth" },
   timeout: 0,
-  params: { limit: 5 },
+  // params: { limit: 5 },
 });
 // baseURL: "http://localhost:3001",

@@ -16,3 +16,54 @@ light: myColors.greenLight,
 main: myColors.green,
 dark: myColors.greenDark,
 }
+
+
+
+
+// Get all Faq
+
+  // const getFaqByGroup = async () => {
+  //   try {
+  //     const resposn = await Promise.all([
+  //       axios.get(`/faq/bygroup/${filterId}`),
+  //       axios.get("/faq/category"),
+  //     ]);
+
+  //     if (resposn) {
+  //       setFaqdata((oldFaq) => resposn[0].data.data);
+  //       setCategoryData((oldCat) => resposn[1].data);
+  //       setIsloading((checkLoad) => !checkLoad);
+  //     }
+  //     setIsloading(true);
+  //   } catch (error) {}
+  // };
+  // const getFaqByUser = async () => {
+  //   // alert("user id:", filterId);
+  //   // alert("user id:", filterCode);
+  //   try {
+  //     const resposn = await Promise.all([
+  //       axios.get(`/faq/FaqByFollowerUser/${filterId}`),
+  //     ]);
+
+  //     if (resposn) {
+  //       setFaqdata((oldFaq) => resposn[0].data.data);
+
+  //       setIsloading((checkLoad) => !checkLoad);
+  //     }
+  //     setIsloading(true);
+  //   } catch (error) {
+  //     // console.log("Error :", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   // {
+  //   //   filterCode === "showallFaq" && setFaqdata(data);
+  //   // }
+  //   {
+  //     filterCode === "showFaqByGroup" && getFaqByGroup();
+  //   }
+  //   {
+  //     filterCode === "showFaqByFlowerUser" && getFaqByUser();
+  //   }
+  // }, [filterCode, filterId, data]);

@@ -1,14 +1,15 @@
 import React from "react";
-
 import Loader from "../../../helper/Loader";
 import { Stack, Chip, Divider } from "@mui/material";
 import { HiDocumentSearch } from "react-icons/hi";
-
 import { GoCommentDiscussion } from "react-icons/go";
 import "./faq.module.css";
 import { ShowFaqCard, sx_HiDocumentSearch } from "./faqHelper";
+import useAxiosToGetData from "../../../helper/useAxiosToGetData";
 
-export default function Faq({ lookup, faqDataFromData, isLoading, filterRow }) {
+export default function Faq({ lookup, filterRow, faqUrlLink }) {
+  const { data, dataIsLoading } = useAxiosToGetData(faqUrlLink);
+
   return (
     <>
       <Stack
@@ -16,7 +17,6 @@ export default function Faq({ lookup, faqDataFromData, isLoading, filterRow }) {
         justifyContent={"space-between"}
         sx={{
           border: `1px solid #EAEAE9`,
-
           borderRadius: "20px",
         }}
       >
@@ -47,7 +47,7 @@ export default function Faq({ lookup, faqDataFromData, isLoading, filterRow }) {
         />
       </Stack>
       <Divider sx={{ marginBottom: "15px", marginTop: "10px" }}></Divider>
-      {isLoading ? <ShowFaqCard faqdata={faqDataFromData} /> : <Loader />}
+      {dataIsLoading ? <ShowFaqCard faqdata={data} /> : <Loader />}
       {/* {isLoading ? <ShowFaq faqdata={faqDataFromData} /> : <Loader />} */}
     </>
   );

@@ -1,40 +1,23 @@
 import React, { useState, useContext } from "react";
-import { Avatar, Box, Button, IconButton, Stack } from "@mui/material";
+import { Avatar, Box, IconButton, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-
 import { FaqDetail } from "../../../../../helper/FAQContext";
-
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
+import useAxiosToGetData from "../../../../../helper/useAxiosToGetData";
+import { UserDetail } from "../../../../../helper/userContext";
 
-import Faq from "../../Faq";
+function PepoleYouFollow() {
+  const { userId } = useContext(UserDetail);
 
-function PepoleYouFollow({ categoryData }) {
-  const [selectedIndex, setSelectedIndex] = useState("");
-  const [selectedItem, setSelectedItem] = useState("");
-  const [selectedFaq, setSelectedFaq] = useState(false);
-  const { filterByCategory, setfilterByCategory, setFilterCode } =
-    useContext(FaqDetail);
-
-  const handleShowUserFaq = () => {
-    alert("handleShowUserFaq");
-    // setFilterCode(1);
-    // setfilterByCategory("Show all data");
-  };
-  const handleListItemClick = (index, catName) => {
-    // e.preventDefault();
-    setSelectedIndex(index);
-    setSelectedItem(catName);
-    setfilterByCategory(catName);
-    setFilterCode(index);
-    setSelectedFaq(true);
-  };
-
+  const { data: dataFloewr, dataIsLoading: FloewrDataIsLoading } =
+    useAxiosToGetData(`/user/showflower/${userId}`);
+  console.log(dataFloewr);
   return (
     <>
       <Box sx={{ marginLeft: "7px", paddingTop: "7px" }}>
@@ -43,7 +26,6 @@ function PepoleYouFollow({ categoryData }) {
           spacing={1}
           justifyContent="space-between"
           alignItems="center"
-          // sx={{ width: "100%" }} // divider={<Divider orientation="vertical" flexItem />}
         >
           <FaUsers
             color={"blue"}
@@ -56,40 +38,13 @@ function PepoleYouFollow({ categoryData }) {
             You Track
           </Typography>
           <Typography variant="caption" textAlign={"center"} flex={1}>
-            {categoryData.length}
+            {FloewrDataIsLoading && dataFloewr.length}
           </Typography>
         </Stack>
 
         <nav aria-label="main mailbox folders">
           <List>
-            {categoryData.map((catitem, itemIndex) => {
-              {
-                console.log(catitem.catid);
-              }
-              return (
-                <ListItem
-                  key={catitem.id}
-                  disablePadding
-                  size={"small"}
-                  sx={{ padding: 0, fontSize: ".8rem" }}
-                >
-                  <ListItemButton
-                    onClick={() => {
-                      handleShowUserFaq();
-                    }}
-                    sx={{
-                      padding: 0,
-                      borderBottom: "1px solid lightgray",
-                    }}
-                  >
-                    <ListData catitem={catitem.username} />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-            {/* {selectedFaq && <Faq lookup={selectedItem} />} */}
-
-            {/* {selectedFaq && setSelectedFaq(false)} */}
+            {FloewrDataIsLoading && <ShowFlower datax={dataFloewr} />}
           </List>
         </nav>
 
@@ -100,6 +55,47 @@ function PepoleYouFollow({ categoryData }) {
 }
 
 export default PepoleYouFollow;
+
+const ShowFlower = ({ datax }) => {
+  const [selectedIndex, setSelectedIndex] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedFaq, setSelectedFaq] = useState(false);
+  const { setFaqUrl } = useContext(FaqDetail);
+
+  const handleListItemClick = (index, catName) => {
+    setSelectedIndex(index);
+    setSelectedItem(catName);
+    setSelectedFaq(true);
+    // CONTROL SEARCH CONDITION
+    setFaqUrl(`/faq/FaqByFollowerUser/${index}`);
+  };
+
+  return datax.map((catitem) => {
+    return (
+      <>
+        <ListItem
+          key={catitem.id}
+          disablePadding
+          size={"small"}
+          sx={{ padding: 0, fontSize: ".8rem" }}
+        >
+          <ListItemButton
+            onClick={() => {
+              // handleListItemClick();
+              handleListItemClick(catitem.followuser, catitem.username);
+            }}
+            sx={{
+              padding: 0,
+              borderBottom: "1px solid lightgray",
+            }}
+          >
+            <ListData catitem={catitem.followuser + catitem.username} />
+          </ListItemButton>
+        </ListItem>
+      </>
+    );
+  });
+};
 
 function ListData({ catitem, rowcount }) {
   return (

@@ -1,4 +1,5 @@
 import FaqCrads from "./faqComponent/FaqCards";
+import Nofaq from "../faq/faqComponent/NoFaqCards";
 
 export const sx_HiDocumentSearch = {
   // bgcolor: green[500],
@@ -8,6 +9,10 @@ export const sx_HiDocumentSearch = {
   width: "auto",
 };
 export const ShowFaqCard = ({ faqdata }) => {
+  console.log("test:" + typeof faqdata);
+  if (faqdata.length === 0) {
+    return <Nofaq />;
+  }
   return (
     <>
       {faqdata.map((faqItem, idx) => (
@@ -25,29 +30,3 @@ export const ShowFaqCard = ({ faqdata }) => {
     </>
   );
 };
-// export const ShowFaq = ({ faqdata }) => {
-//   return (
-//     <>
-//       {faqdata.map((faqItem, idx) => (
-//         <Accordion
-//           key={faqItem.faqid}
-//           sx={{ marginBottom: "5px", width: "100%" }}
-//         >
-//           {/* {console.log("image : " + faqItem.avatar)} */}
-
-//           <FaqQuastion
-//             Quastion={faqItem.faq}
-//             src={faqItem.avatar}
-//             count={faqItem.rowcount}
-//             faqid={faqItem.faqid}
-//             autherName={faqItem.autherName}
-//             faqGroup={faqItem.catName}
-//             create_at={faqItem.create_at}
-//           />
-//         </Accordion>
-//       ))}
-//     </>
-//   );
-// };
-
-// style SX Var

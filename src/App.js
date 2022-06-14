@@ -43,20 +43,20 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <FAQProvider>
-            <Paper>
-              <ResponsiveAppBar />
-              <Box sx={{ position: "fixed", left: "3px", top: "80%" }}></Box>
-              <Box m={4}>
-                <Stack
-                  direction={{ xs: "column", sm: "row" }}
-                  spacing={1}
-                  justifyContent="center"
-                >
-                  <MyRoutes />
-                </Stack>
-              </Box>
-              <Myfooter />
-            </Paper>
+            {/* <Paper> */}
+            <ResponsiveAppBar />
+            <Box sx={{ position: "fixed", left: "3px", top: "80%" }}></Box>
+            <Box m={4}>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={1}
+                justifyContent="center"
+              >
+                <MyRoutes />
+              </Stack>
+            </Box>
+            <Myfooter />
+            {/* </Paper> */}
           </FAQProvider>
         </ThemeProvider>
       </BrowserRouter>
