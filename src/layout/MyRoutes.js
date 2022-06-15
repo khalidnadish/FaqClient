@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Priceing from "../pages/myCv/Priceing/Priceing";
 import Clients from "../component/Showimage/Showimage";
 import SingIn from "../pages/SignIn/SingIn";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import ErrorPage from "../component/ErrorPage/ErrorPage";
 import Dashboard from "../pages/dashboard/Dashboard";
 // import Login from "../pages/SignIn/Login";
 import { itemData } from "../helper/tempData/profileData";
