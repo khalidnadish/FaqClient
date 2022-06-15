@@ -18,6 +18,7 @@ export default function Faq({ lookup, faqUrlLink }) {
         sx={{
           border: `1px solid #EAEAE9`,
           borderRadius: "20px",
+          width: "100%",
         }}
       >
         <Chip

@@ -66,7 +66,7 @@ export default function FaqCrads({
 
   const cardStyle = {
     // minWidth: 700,
-    width: "100%",
+    width: { sx: "80vw", sm: "80vw", md: "100%", lg: "100%" },
     border: `3px solid #EAEAE9`,
     // border: `.5px solid ${blueGrey[500]}`,
     borderRadius: "8px",

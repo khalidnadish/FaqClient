@@ -4,8 +4,8 @@ import Nofaq from "../faq/faqComponent/NoFaqCards";
 export const sx_HiDocumentSearch = {
   // bgcolor: green[500],
   color: "primary.main",
-  paddingLeft: "10px",
-  paddingRight: "10px",
+  paddingLeft: { sx: "1px", sm: "1px", md: "10px", lg: "10px" },
+  paddingRight: { sx: "1px", sm: "1px", md: "10px", lg: "10px" },
   width: "auto",
 };
 export const ShowFaqCard = ({ faqdata }) => {

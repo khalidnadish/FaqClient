@@ -12,6 +12,7 @@ import {
   Container,
   Stack,
   Fab,
+  Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -19,6 +20,7 @@ import { t, useTranslation } from "react-i18next";
 
 import MySearch from "./Search";
 import SettingDrawer from "../settingDrawer/SettingDrawer";
+import { display } from "@mui/system";
 const fabStyle = {
   position: "fixed",
   bottom: 30,
@@ -97,14 +99,15 @@ const ResponsiveAppBar = () => {
               {/* seacrh and buttn*/}
               <Stack
                 direction="row"
-                spacing={1}
+                // spacing={1}
                 justifyContent={"space-between"}
                 alignItems="center"
               >
-                <Box>
+                <Box flex={4}>
                   <MySearch />
                 </Box>
-                <Box>
+
+                <Box flex={1}>
                   <IconButton
                     variant="contained"
                     color="warning"
@@ -114,16 +117,28 @@ const ResponsiveAppBar = () => {
                     <SearchIcon />
                   </IconButton>
                 </Box>
-                <Box>
+
+                <Box
+                  flex={1}
+                  sx={{
+                    display: "flex",
+                    // alignContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
                   <IconButton onClick={() => setOpenDrawer(true)}>
                     <Avatar
                       alt={userName}
                       src={userAvatar}
-                      sx={{ width: 45, height: 45 }}
+                      sx={{
+                        width: { xs: 25, sm: 25, md: 45, lg: 45 },
+                        height: { xs: 25, sm: 25, md: 45, lg: 45 },
+                      }}
                     >
                       {/* {userName} */}
                     </Avatar>
                   </IconButton>
+                  <Typography variant="caption">1.0</Typography>
                 </Box>
               </Stack>
             </Stack>

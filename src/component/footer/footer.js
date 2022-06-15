@@ -63,7 +63,7 @@ function Myfooter() {
               onClick={controlModel}
             ></Button>
           </Tooltip> */}
-          devlopment time
+          devlopment time version 1.0.0
         </Box>
         <ShowModel open={open} setOpen={setOpen} />
       </Box>
