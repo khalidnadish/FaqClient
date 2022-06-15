@@ -1,12 +1,8 @@
 import React from "react";
 
 import WhatCanIdo1 from "./whatcanido/WhatCanIdo1";
-
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-import Whyme from "./whyme/whyme";
-import Clients from "../../component/Showimage";
+import Whyme from "../myCv/whyme/whyme";
 
 import Skill from "./skill/Skill";
 import { Container, Typography } from "@mui/material";

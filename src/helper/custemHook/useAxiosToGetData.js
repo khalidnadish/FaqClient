@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { axios } from "../helper/axios/axios";
+import { axios } from "../axios/axios";
 const useAxiosToGetData = (urlx) => {
   const [data, setData] = useState(null);
   const [dataIsLoading, setDataIsLoading] = useState(null);

@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { ToggaleArabic, ToggaleEnglish } from "../../helper/langugeToggle";
 import { t, useTranslation } from "react-i18next";
 import cookie from "js-cookie";
 import {
@@ -23,7 +22,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { FaUserEdit } from "react-icons/fa";
 
-import { UserDetail } from "../../helper/userContext";
+import { UserDetail } from "../../helper/context/userContext";
 
 function SettingDrawer({ open, setOpen }) {
   const { userName, setThemeMode, themeMode, userAvatar } =

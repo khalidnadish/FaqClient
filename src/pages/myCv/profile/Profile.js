@@ -4,20 +4,12 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 
 import CustomizedTimeline from "../../../component/Profilecompnent/Pr_Timeline";
 
 import { useTranslation } from "react-i18next";
 
-import "../profile/profle.css";
+import "./profle.css";
 
 const cardStyle = {
   display: "block",
@@ -47,17 +39,6 @@ export default function RecipeReviewCard() {
         <CardContent>
           <CustomizedTimeline />
         </CardContent>
-        {/* <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-        </CardActions> */}
-        {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent></CardContent>
-        </Collapse> */}
       </Card>
     </>
   );

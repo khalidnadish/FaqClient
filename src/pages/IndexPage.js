@@ -3,7 +3,7 @@ import { Box, Stack } from "@mui/material";
 import Faq from "./HomeCompnent/faq/Faq";
 import Category from "./HomeCompnent/faq/faqComponent/Category/Category";
 import PepoleYouFollow from "./HomeCompnent/faq/faqComponent/FollowPepole/PepoleYouFollow";
-import { FaqDetail } from "../helper/FAQContext";
+import { FaqDetail } from "../helper/context/FAQContext";
 import {
   rootStackStyle,
   FlowerBoxStyle,

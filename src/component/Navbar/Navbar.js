@@ -1,10 +1,8 @@
 import React, { useState, useContext } from "react";
 import { DesktopMenu } from "./DesktopMenu";
-import { UserDetail } from "../../helper/userContext";
+import { UserDetail } from "../../helper/context/userContext";
 import AddIcon from "@mui/icons-material/Add";
 import FaqAddModel from "../../pages/HomeCompnent/faq/AddFaq/FaqAddModel";
-
-import SettingsIcon from "@mui/icons-material/Settings";
 import {
   Box,
   IconButton,
@@ -91,17 +89,6 @@ const ResponsiveAppBar = () => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                {/* <Box>
-                  <Fab
-                    color="primary"
-                    size={"small"}
-                    aria-label="add"
-                    onClick={() => handleaddQuastion()}
-                    sx={fabStyle}
-                  >
-                    <AddIcon />
-                  </Fab>
-                </Box> */}
                 <Box>
                   <DesktopMenu handleCloseNavMenu={handleCloseNavMenu} />
                 </Box>
@@ -139,29 +126,6 @@ const ResponsiveAppBar = () => {
                   </IconButton>
                 </Box>
               </Stack>
-
-              {/* avtar and user name  and Language*/}
-
-              {/* <Box>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      padding: 0,
-                      fontWeight: "normal",
-                      fontSize: "1rem",
-                    }}
-                    color={"primary"}
-                  >
-                    Welcome {userName}
-                  </Typography>
-                </Box> */}
-              {/* <Box>
-                  {i18n.language === "en" ? (
-                    <ToggaleArabic />
-                  ) : (
-                    <ToggaleEnglish />
-                  )}
-                </Box> */}
             </Stack>
           </Toolbar>
         </Container>
@@ -177,51 +141,3 @@ const ResponsiveAppBar = () => {
   );
 };
 export default ResponsiveAppBar;
-
-// function ToggaleArabic({}) {
-//   const [t, i18n] = useTranslation();
-//   return (
-//     <IconButton
-//       color="primary"
-//       aria-label="upload picture"
-//       variant="outlined"
-//       size="small"
-//       onClick={() => {
-//         i18n.changeLanguage("ar");
-//         document.body.dir = "rtl";
-//         cookie.remove("i18next");
-//         cookie.set("i18next", "ar");
-//       }}
-//     >
-//       <Avatar
-//         sx={{ width: 30, height: 30 }}
-//         alt="khalid nadish"
-//         src={"assets/images/arFlag.svg"}
-//       ></Avatar>
-//     </IconButton>
-//   );
-// }
-
-// function ToggaleEnglish({}) {
-//   const [t, i18n] = useTranslation();
-//   return (
-//     <IconButton
-//       color="primary"
-//       size="small"
-//       aria-label="upload picture"
-//       variant="outlined"
-//       onClick={() => {
-//         i18n.changeLanguage("en");
-//         document.body.dir = "ltr";
-//         cookie.remove("i18next");
-//         cookie.set("i18next", "en");
-//       }}
-//     >
-//       <Avatar
-//         sx={{ width: 30, height: 30 }}
-//         alt="khalid nadish"
-//         src={"assets/images/enFlag.svg"}
-//       ></Avatar>
-//     </IconButton>
-//   );
-// }

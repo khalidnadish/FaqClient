@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { UserDetail } from "./helper/userContext";
+import { UserDetail } from "./helper/context/userContext";
+import { FAQProvider } from "../src/helper/context/FAQContext";
 import ResponsiveAppBar from "./component/Navbar/Navbar";
 import { purple } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import { FAQProvider } from "../src/helper/FAQContext";
-import { Stack, Box, CssBaseline, Paper } from "@mui/material";
+import { Stack, Box, CssBaseline } from "@mui/material";
 
 import MyRoutes from "./layout/MyRoutes";
 import Myfooter from "./component/footer/footer";

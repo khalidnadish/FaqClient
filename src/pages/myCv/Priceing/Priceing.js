@@ -21,7 +21,7 @@ import {
   DimondData,
   OtherdData,
   lastitemTilte,
-} from "../../helper/product";
+} from "../../../helper/tempData/product";
 
 export default function Priceing() {
   return (

@@ -2,11 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
 import { Stack, Divider } from "@mui/material";
-import Leftside from "../../layout/Leftside";
-import Rigthside from "../../layout/Rigthside";
-import CenterSide from "../../layout/CenterSide";
+// import Leftside from "../../layout/Leftside";
+import Profile from "../../pages/myCv/profile/Profile";
+import Home from "../../pages/myCv/Home";
+
+// import CenterSide from "../../layout/CenterSide";
 
 const style = {
   position: "absolute",
@@ -76,9 +78,11 @@ export default function ShowModel({ open, setOpen }) {
             justifyContent="space-around"
             // sx={{ marginTop: "20px" }}
           >
-            <Leftside />
+            {/* <Leftside /> */}
+            <Profile />
+            <Home></Home>
             <Divider orientation="vertical" flexItem />
-            <CenterSide />
+            {/* <CenterSide /> */}
           </Stack>
         </Box>
       </Modal>

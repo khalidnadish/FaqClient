@@ -7,7 +7,7 @@ import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { UserDetail } from "../../../../helper/userContext";
+import { UserDetail } from "../../../../helper/context/userContext";
 
 import {
   Stack,

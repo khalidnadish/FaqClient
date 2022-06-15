@@ -1,13 +1,13 @@
 import React from "react";
-import Loader from "../../../helper/Loader";
+import Loader from "../../../component/loader/Loader";
 import { Stack, Chip, Divider } from "@mui/material";
 import { HiDocumentSearch } from "react-icons/hi";
 import { GoCommentDiscussion } from "react-icons/go";
 import "./faq.module.css";
 import { ShowFaqCard, sx_HiDocumentSearch } from "./faqHelper";
-import useAxiosToGetData from "../../../helper/useAxiosToGetData";
+import useAxiosToGetData from "../../../helper/custemHook/useAxiosToGetData";
 
-export default function Faq({ lookup, filterRow, faqUrlLink }) {
+export default function Faq({ lookup, faqUrlLink }) {
   const { data, dataIsLoading } = useAxiosToGetData(faqUrlLink);
 
   return (

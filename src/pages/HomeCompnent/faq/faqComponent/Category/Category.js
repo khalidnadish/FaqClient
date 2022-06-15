@@ -7,9 +7,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { BsSearch } from "react-icons/bs";
-import { FaqDetail } from "../../../../../helper/FAQContext";
+import { FaqDetail } from "../../../../../helper/context/FAQContext";
 import { pink } from "@mui/material/colors";
-import useAxiosToGetData from "../../../../../helper/useAxiosToGetData";
+import useAxiosToGetData from "../../../../../helper/custemHook/useAxiosToGetData";
 
 function Category() {
   const { data: dataCategory, dataIsLoading: catDataIsLoading } =
@@ -19,6 +19,7 @@ function Category() {
 
   const handleShowAll = () => {
     setFaqUrl(`/faq`);
+    setFaqInfo({ titleName: "Show ALL  Faq", recordsCount: 0 });
   };
   return (
     <>

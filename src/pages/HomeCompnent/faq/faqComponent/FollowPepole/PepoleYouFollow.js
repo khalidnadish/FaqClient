@@ -13,11 +13,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { FaqDetail } from "../../../../../helper/FAQContext";
+import { FaqDetail } from "../../../../../helper/context/FAQContext";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
-import useAxiosToGetData from "../../../../../helper/useAxiosToGetData";
-import { UserDetail } from "../../../../../helper/userContext";
+import useAxiosToGetData from "../../../../../helper/custemHook/useAxiosToGetData";
+import { UserDetail } from "../../../../../helper/context/userContext";
 
 function PepoleYouFollow() {
   const { userId } = useContext(UserDetail);

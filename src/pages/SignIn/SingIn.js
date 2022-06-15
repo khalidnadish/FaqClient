@@ -9,24 +9,16 @@ import {
   Divider,
 } from "@mui/material";
 import Axios from "axios";
-import Snack from "../../component/SnackBar";
+import Snack from "../../component/snackbar/SnackBar";
 
-import { useNavigate } from "react-router-dom";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 
-let response1 = "";
-function msg(msg) {
-  alert(msg);
-  return <Snack openSnack={true} msg={msg} sty={"error"} />;
-}
 function SingIn() {
   const [username, Username] = useState("");
   const [email, Email] = useState("");
   const [password, Password] = useState("");
   const [phone, Phone] = useState("");
   const [reply, setReply] = useState(null);
-
-  const navigate = useNavigate();
 
   const saveData = (e) => {
     // e.preventDefault();

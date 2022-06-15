@@ -6,7 +6,6 @@ import { FcInfo } from "react-icons/fc";
 import { FcDecision } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 import { axios } from "../../../helper/axios/axios";
-import { FcBookmark } from "react-icons/fc";
 import { FcPlus } from "react-icons/fc";
 import { MdBookmarkBorder } from "react-icons/md";
 import FaqAnswerId from "./faqComponent/FaqAnswerId";
@@ -25,8 +24,8 @@ import {
   Badge,
 } from "@mui/material";
 // import Avatar from "react-avatar";
-import { Image } from "@mui/icons-material";
-import Loader from "../../../helper/Loader";
+
+import Loader from "../../../component/loader/Loader";
 
 const Boxwraper = styled(Box)({
   backgroundColor: "whitesmoke",
