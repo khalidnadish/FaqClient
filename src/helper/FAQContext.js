@@ -8,7 +8,10 @@ export const FAQProvider = (props) => {
   const [filterCode, setFilterCode] = useState("showallFaq");
   const [filterId, setFilterId] = useState(0);
   const [faqUrl, setFaqUrl] = useState("/faq");
-
+  const [faqInfo, setFaqInfo] = useState({
+    titleName: "Showing All Faq",
+    recordsCount: 0,
+  });
   return (
     <FaqDetail.Provider
       value={{
@@ -21,6 +24,8 @@ export const FAQProvider = (props) => {
         setFilterId: setFilterId,
         faqUrl: faqUrl,
         setFaqUrl: setFaqUrl,
+        faqInfo: faqInfo,
+        setFaqInfo: setFaqInfo,
       }}
     >
       {props.children}

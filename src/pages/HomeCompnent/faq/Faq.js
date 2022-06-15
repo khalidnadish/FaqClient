@@ -34,7 +34,7 @@ export default function Faq({ lookup, filterRow, faqUrlLink }) {
           variant="outlined"
         />
         <Chip
-          label={filterRow}
+          label={dataIsLoading && data.length}
           icon={
             <GoCommentDiscussion
               size={20}

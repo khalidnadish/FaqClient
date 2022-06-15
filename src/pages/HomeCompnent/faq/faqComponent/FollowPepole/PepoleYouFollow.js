@@ -1,5 +1,12 @@
 import React, { useState, useContext } from "react";
-import { Avatar, Box, IconButton, Stack } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  IconButton,
+  ListItemAvatar,
+  ListSubheader,
+  Stack,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -21,29 +28,42 @@ function PepoleYouFollow() {
   return (
     <>
       <Box sx={{ marginLeft: "7px", paddingTop: "7px" }}>
-        <Stack
-          direction={"row"}
-          spacing={1}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <FaUsers
-            color={"blue"}
-            size={25}
-            flex={1}
-            style={{ margin: "auto" }}
-          />
-
-          <Typography variant="caption" textAlign={"left"} flex={4} ml={1}>
-            You Track
-          </Typography>
-          <Typography variant="caption" textAlign={"center"} flex={1}>
-            {FloewrDataIsLoading && dataFloewr.length}
-          </Typography>
-        </Stack>
-
         <nav aria-label="main mailbox folders">
-          <List>
+          <List
+            // dense
+            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            subheader={
+              <ListSubheader component="div" id="nested-list-subheader">
+                <Stack
+                  direction={"row"}
+                  spacing={1}
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <FaUsers
+                    color={"blue"}
+                    size={25}
+                    flex={1}
+                    style={{ margin: "auto" }}
+                  />
+
+                  <Typography
+                    variant="caption"
+                    textAlign={"left"}
+                    flex={4}
+                    ml={1}
+                  >
+                    You Tracking
+                  </Typography>
+                  <Typography variant="caption" textAlign={"center"} flex={1}>
+                    {FloewrDataIsLoading && dataFloewr.length}
+                  </Typography>
+                </Stack>
+              </ListSubheader>
+            }
+          >
             {FloewrDataIsLoading && <ShowFlower datax={dataFloewr} />}
           </List>
         </nav>
@@ -60,7 +80,7 @@ const ShowFlower = ({ datax }) => {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
-  const { setFaqUrl } = useContext(FaqDetail);
+  const { setFaqUrl, setFaqInfo } = useContext(FaqDetail);
 
   const handleListItemClick = (index, catName) => {
     setSelectedIndex(index);
@@ -68,20 +88,35 @@ const ShowFlower = ({ datax }) => {
     setSelectedFaq(true);
     // CONTROL SEARCH CONDITION
     setFaqUrl(`/faq/FaqByFollowerUser/${index}`);
+    setFaqInfo({ titleName: catName, recordsCount: 0 });
   };
 
-  return datax.map((catitem) => {
+  return datax.map((catitem, index) => {
     return (
       <>
         <ListItem
+          alignItems="flex-start"
           key={catitem.id}
           disablePadding
-          size={"small"}
-          sx={{ padding: 0, fontSize: ".8rem" }}
+          // size={"small"}
+          disableGutters
+          secondaryAction={
+            <IconButton
+              // size="small"
+              color="primary"
+              sx={{ marginRight: "3px", bgcolor: "whitesmoke" }}
+              onClick={() => {
+                {
+                  alert(index);
+                }
+              }}
+            >
+              <RiSendPlaneFill size={15} />
+            </IconButton>
+          }
         >
           <ListItemButton
             onClick={() => {
-              // handleListItemClick();
               handleListItemClick(catitem.followuser, catitem.username);
             }}
             sx={{
@@ -89,48 +124,27 @@ const ShowFlower = ({ datax }) => {
               borderBottom: "1px solid lightgray",
             }}
           >
-            <ListData catitem={catitem.followuser + catitem.username} />
+            <ListItemAvatar sx={{ alignItems: "center" }}>
+              <Avatar
+                size="small"
+                src={"http://localhost:3001/images/avatar/1653493960018_1.jpg"}
+                variant="rounded"
+                sx={{ width: 24, height: 24 }}
+              />
+            </ListItemAvatar>
+            <ListItemText
+              // disableTypography
+              primaryTypographyProps
+              primary={
+                <Typography variant="body2" sx={{ color: "gray" }}>
+                  {catitem.username}
+                </Typography>
+              }
+              // sx={{ fontWeight: "normal", fontSize: ".5rem" }}
+            />
           </ListItemButton>
         </ListItem>
       </>
     );
   });
 };
-
-function ListData({ catitem, rowcount }) {
-  return (
-    <ListItemText disableTypography>
-      <Stack
-        direction={"row"}
-        // alignItems={"center"}
-        justifyContent={"space-between"}
-        sx={{ padding: "5px" }}
-      >
-        <Avatar
-          flex={1}
-          sx={{
-            width: 35,
-            height: 35,
-            fontSize: ".8rem",
-          }}
-          variant="circle"
-          alignItems="center"
-        ></Avatar>
-
-        <Typography
-          variant="subtitle1"
-          fontWeight={"normal"}
-          flex={4}
-          ml={1}
-          alignItems="center"
-        >
-          {catitem}
-        </Typography>
-
-        <IconButton size="small" color="info" alignItems="center">
-          <RiSendPlaneFill size={15} />
-        </IconButton>
-      </Stack>
-    </ListItemText>
-  );
-}

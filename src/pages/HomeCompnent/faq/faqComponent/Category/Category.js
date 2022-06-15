@@ -15,7 +15,7 @@ function Category() {
   const { data: dataCategory, dataIsLoading: catDataIsLoading } =
     useAxiosToGetData("/faq/category");
 
-  const { setFaqUrl } = useContext(FaqDetail);
+  const { setFaqUrl, setFaqInfo } = useContext(FaqDetail);
 
   const handleShowAll = () => {
     setFaqUrl(`/faq`);
@@ -50,11 +50,12 @@ const ShowGropdata = ({ showMyGroup }) => {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
-  const { setFaqUrl } = useContext(FaqDetail);
+  const { setFaqUrl, setFaqInfo } = useContext(FaqDetail);
   const handleListItemClick = (index, catName) => {
     setSelectedIndex(index);
     setSelectedItem(catName);
     setFaqUrl(`/faq/bygroup/${index}`);
+    setFaqInfo({ titleName: catName, recordsCount: 0 });
     setSelectedFaq(true);
   };
 
