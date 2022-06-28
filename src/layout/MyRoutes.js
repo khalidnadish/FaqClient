@@ -2,10 +2,10 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import ErrorPage from "../component/ErrorPage/ErrorPage";
-import Loader from "../component/loader/Loader";
 
-const IndexPage = lazy(() => import("../pages/IndexPage"));
-const FaqId = lazy(() => import("../pages/HomeCompnent/faq/FaqId"));
+const Loader = lazy(() => import("../component/loader/Loader"));
+const IndexPage = lazy(() => import("../pages/home/IndexPage"));
+const FaqId = lazy(() => import("../pages/home/faq/FaqId"));
 
 const MyRoutes = () => {
   return (

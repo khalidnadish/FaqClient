@@ -13,12 +13,12 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import { FaqDetail } from "../../../../../helper/context/FAQContext";
+import { FaqDetail } from "../../../../helper/context/FAQContext";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
-import useAxiosToGetData from "../../../../../helper/custemHook/useAxiosToGetData";
-import { UserDetail } from "../../../../../helper/context/userContext";
-import SendDirectMsg from "../../../../../component/directMsg/SendDirectMsq";
+import useAxiosToGetData from "../../../../helper/custemHook/useAxiosToGetData";
+import { UserDetail } from "../../../../helper/context/userContext";
+import SendDirectMsg from "../../../../component/directMsg/SendDirectMsq";
 
 function PepoleYouFollow() {
   const { userId } = useContext(UserDetail);

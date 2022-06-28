@@ -1,15 +1,8 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import { blueGrey } from "@mui/material/colors";
-import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
-import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
-import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { UserDetail } from "../../../../helper/context/userContext";
-
 import {
+  Box,
+  Modal,
+  Button,
   Stack,
   Divider,
   Typography,
@@ -17,6 +10,13 @@ import {
   Avatar,
   IconButton,
 } from "@mui/material";
+
+import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { UserDetail } from "../../../../helper/context/userContext";
+
 import CloseIcon from "@mui/icons-material/Close";
 
 const modalStyle = {

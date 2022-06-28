@@ -21,13 +21,12 @@ import { FaLayerGroup } from "react-icons/fa";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import { VscLayersActive } from "react-icons/vsc";
-import Loader from "../loader/Loader";
-import Category from "../../pages/HomeCompnent/faq/faqComponent/Category/Category";
+
+const Loader = lazy(() => import("../loader/Loader"));
+const Category = () => import("../../pages/home/faq/Category/Category");
 
 const PepoleYouFollow = lazy(() =>
-  import(
-    "../../pages/HomeCompnent/faq/faqComponent/FollowPepole/PepoleYouFollow"
-  )
+  import("../../pages/home/faq/FollowPepole/PepoleYouFollow")
 );
 const LeftDrawer = lazy(() => import("../leftDrawer/LeftDrawer"));
 
@@ -151,7 +150,9 @@ function OtherNav() {
       </Suspense>
       <Suspense fallback={<Loader />}>
         <LeftDrawer open={openGroups} setOpen={setOpenGroups}>
-          <Category />
+          <Suspense fallback={<Loader />}>
+            <Category />
+          </Suspense>
         </LeftDrawer>
       </Suspense>
     </>

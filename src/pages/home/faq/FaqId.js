@@ -1,12 +1,9 @@
-import React from "react";
-import { MdOutlineQuickreply } from "react-icons/md";
-import { MdBookmarkBorder } from "react-icons/md";
-import FaqAnswerId from "./faqComponent/FaqAnswerId";
+import React, { lazy, Suspense } from "react";
+import { MdOutlineQuickreply, MdBookmarkBorder } from "react-icons/md";
+
 import useAxiosToGetData from "../../../helper/custemHook/useAxiosToGetData";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import Avatar from "@mui/material/Avatar";
+import { Card, CardHeader, CardContent, Avatar } from "@mui/material";
+
 import { red } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
 import {
@@ -19,7 +16,9 @@ import {
   AppBar,
   Toolbar,
 } from "@mui/material";
-import Loader from "../../../component/loader/Loader";
+
+const Loader = lazy(() => import("../../../component/loader/Loader.js"));
+const FaqAnswerId = lazy(() => import("../faq/FaqAnswerId"));
 
 function FaqId({ faqid }) {
   const { data: faqwithid, dataIsLoading: isLoading } = useAxiosToGetData(
@@ -60,7 +59,9 @@ function FaqId({ faqid }) {
       </AppBar>
 
       <Container>
-        {isLoading ? <FaqAnswerId id={faqwithid[0].faqid} /> : <Loader />}
+        <Suspense fallback={<Loader />}>
+          {isLoading ? <FaqAnswerId id={faqwithid[0].faqid} /> : <Loader />}
+        </Suspense>
       </Container>
     </>
   );

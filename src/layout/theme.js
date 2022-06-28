@@ -1,16 +1,20 @@
-import { useContext } from "react";
 import { createTheme } from "@mui/material";
-import { UserDetail } from "../helper/context/userContext";
-import { purple } from "@mui/material/colors";
 
-// const { themeMode } = useContext(UserDetail);
 export const theme = createTheme({
   palette: {
     // mode: themeMode,
-    // primary: {
-    //   //   // Purple and green play nicely together.
-    //   //   main: purple[500],
-    // },
+    primary: {
+      light: "#757ce8",
+      main: "#3f50b5",
+      dark: "#002884",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#ff7961",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#000",
+    },
   },
   typography: {
     allVariants: {

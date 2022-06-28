@@ -15,12 +15,12 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { t, useTranslation } from "react-i18next";
 import MySearch from "./Search";
-import Loader from "../loader/Loader";
 
+const Loader = lazy(() => import("../loader/Loader"));
 const SettingDrawer = lazy(() => import("../settingDrawer/SettingDrawer"));
 
 const FaqAddModel = lazy(() =>
-  import("../../pages/HomeCompnent/faq/AddFaq/FaqAddModel")
+  import("../../pages/home/faq/AddFaq/FaqAddModel")
 );
 
 const DesktopMenu = lazy(() => import("./DesktopMenu"));

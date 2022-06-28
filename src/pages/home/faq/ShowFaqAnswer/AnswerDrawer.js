@@ -1,7 +1,9 @@
-import React from "react";
-import Drawer from "@mui/material/Drawer";
-import { Box } from "@mui/material";
-import FaqId from "../../FaqId";
+import React, { lazy, Suspense } from "react";
+
+import { Box, Drawer } from "@mui/material";
+
+const FaqId = lazy(() => import("../FaqId"));
+const Loader = lazy(() => import("../../../../component/loader/Loader"));
 
 function AnswerDrawer({ open, setOpen, faqid }) {
   return (
@@ -31,7 +33,9 @@ function AnswerDrawer({ open, setOpen, faqid }) {
         }}
       >
         <Box sx={{ width: "100%" }}>
-          <FaqId faqid={faqid} />
+          <Suspense fallback={<Loader />}>
+            <FaqId faqid={faqid} />
+          </Suspense>
         </Box>
 
         {/* <MsgAction /> */}

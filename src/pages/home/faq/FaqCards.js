@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import {
   styled,
   Card,
@@ -21,17 +21,18 @@ import {
   Box,
 } from "@mui/material";
 
-import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import FaqAnswerId from "../faqComponent/FaqAnswerId";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 import RateReviewIcon from "@mui/icons-material/RateReview";
 
-import AnswerDrawer from "./ShowFaqAnswer/AnswerDrawer";
+const AnswerDrawer = lazy(() => import("./ShowFaqAnswer/AnswerDrawer"));
+const Loader = lazy(() => import("../../../component/loader/Loader"));
+const FaqAnswerId = lazy(() => import("../faq/FaqAnswerId"));
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -104,7 +105,11 @@ export default function FaqCrads({
           answerCount={count}
         />
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>{showAnswer && <FaqAnswerId id={faqid} />}</CardContent>
+          <Suspense fallback={<Loader />}>
+            <CardContent>
+              {showAnswer && <FaqAnswerId id={faqid} />}
+            </CardContent>
+          </Suspense>
         </Collapse>
       </Card>
     </Stack>
@@ -126,7 +131,11 @@ const MainCardHeader = ({
     <>
       <CardHeader
         avatar={
-          <Avatar src={src} sx={{ bgcolor: red[500] }} aria-label="recipe" />
+          <Avatar
+            src={src}
+            sx={{ bgcolor: "background.paper" }}
+            aria-label="recipe"
+          />
         }
         action={
           <>
@@ -208,11 +217,13 @@ function MainCardContent({ Quastion, faqid }) {
           <Typography sx={{ wordBreak: "break-word" }}>{Quastion}</Typography>
         </CardContent>
       </Tooltip>
-      <AnswerDrawer
-        open={showReplyDrawer}
-        setOpen={setShowReplyDrawer}
-        faqid={faqid}
-      />
+      <Suspense fallback={<Loader />}>
+        <AnswerDrawer
+          open={showReplyDrawer}
+          setOpen={setShowReplyDrawer}
+          faqid={faqid}
+        />
+      </Suspense>
     </>
   );
 }

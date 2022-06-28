@@ -1,15 +1,15 @@
 import React, { useEffect, useContext, lazy, Suspense } from "react";
 import { Container, Grid } from "@mui/material";
 
-import { FaqDetail } from "../helper/context/FAQContext";
+import { FaqDetail } from "../../helper/context/FAQContext";
 
-import Loader from "../component/loader/Loader";
+const Loader = lazy(() => import("../../component/loader/Loader"));
 
-const Navbar = lazy(() => import("../component/Navbar/Navbar.js"));
-const Faq = lazy(() => import("./HomeCompnent/faq/Faq"));
+const Navbar = lazy(() => import("../../component/Navbar/Navbar.js"));
+const Faq = lazy(() => import("./faq/Faq"));
 
-const Myfooter = lazy(() => import("../component/footer/footer.js"));
-const OtherNav = lazy(() => import("../component/submenu/OtherNav"));
+const Myfooter = lazy(() => import("../../component/footer/footer.js"));
+const OtherNav = lazy(() => import("../../component/submenu/OtherNav"));
 
 function IndexPage() {
   const { faqUrl, faqInfo } = useContext(FaqDetail);

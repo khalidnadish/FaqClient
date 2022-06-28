@@ -1,13 +1,22 @@
 import React, { lazy, Suspense } from "react";
-import Loader from "../../../component/loader/Loader";
 
 import "./faq.module.css";
-// import { ShowFaqCard } from "./faqHelper";
+
 import useAxiosToGetData from "../../../helper/custemHook/useAxiosToGetData";
 const ShowFaqCard = lazy(() => import("./faqHelper"));
 
+const Loader = lazy(() => import("../../../component/loader/Loader"));
+const Nofaq = lazy(() => import("../faq/NoFaqCards"));
 export default function Faq({ faqUrlLink }) {
   const { data, dataIsLoading } = useAxiosToGetData(faqUrlLink);
+
+  if (data?.length === 0) {
+    return (
+      <Suspense fallback={<Loader />}>
+        <Nofaq />
+      </Suspense>
+    );
+  }
 
   return (
     <>

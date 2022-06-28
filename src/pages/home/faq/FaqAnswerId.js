@@ -1,7 +1,6 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
+import { Typography, Box, Avatar } from "@mui/material";
 
-import { Box } from "@mui/system";
 import { GrLike, GrDislike } from "react-icons/gr";
 
 import {
@@ -12,8 +11,8 @@ import {
   Chip,
   Divider,
 } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import useAxiosToGetData from "../../../../helper/custemHook/useAxiosToGetData";
+
+import useAxiosToGetData from "../../../helper/custemHook/useAxiosToGetData";
 import styled from "@emotion/styled";
 
 const ProfileBoxwraper = styled(Box)({

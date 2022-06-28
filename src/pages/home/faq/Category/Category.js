@@ -10,18 +10,13 @@ import {
   ListSubheader,
   Chip,
 } from "@mui/material";
-import { FaBell, FaLayerGroup } from "react-icons/fa";
+import { FaLayerGroup } from "react-icons/fa";
 
-import { UserDetail } from "../../../../../helper/context/userContext";
-import { FaqDetail } from "../../../../../helper/context/FAQContext";
+import { UserDetail } from "../../../../helper/context/userContext";
+import { FaqDetail } from "../../../../helper/context/FAQContext";
 
-import useAxiosToGetData from "../../../../../helper/custemHook/useAxiosToGetData";
-import { RiUserFollowFill } from "react-icons/ri";
-import { RiUserUnfollowLine } from "react-icons/ri";
+import useAxiosToGetData from "../../../../helper/custemHook/useAxiosToGetData";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import { axios } from "../../../../../helper/axios/axios";
-import toast from "react-hot-toast";
-
 function Category() {
   console.log("Category render");
   const [urlx, setUrlx] = useState("/category");

@@ -1,20 +1,15 @@
 import React, { lazy, Suspense, useContext, useEffect } from "react";
-import Loader from "../../../component/loader/Loader";
+
 import { FaqDetail } from "../../../helper/context/FAQContext";
 
-const FaqCrads = lazy(() => import("./faqComponent/FaqCards"));
-const Nofaq = lazy(() => import("../faq/faqComponent/NoFaqCards"));
+const FaqCrads = lazy(() => import("../faq/FaqCards"));
+
+const Loader = lazy(() => import("../../../component/loader/Loader"));
 
 const ShowFaqCard = ({ faqdata }) => {
   const { faqInfo, setFaqInfo } = useContext(FaqDetail);
 
-  // if (faqdata.length === 0) {
-  //   return (
-  //     <Suspense fallback={<Loader />}>
-  //       <Nofaq />
-  //     </Suspense>
-  //   );
-  // }
+  //
 
   useEffect(() => {
     setFaqInfo({ ...faqInfo, recordsCount: faqdata.length });
