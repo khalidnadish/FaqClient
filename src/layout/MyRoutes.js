@@ -1,30 +1,34 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Priceing from "../pages/myCv/Priceing/Priceing";
-import Clients from "../component/Showimage/Showimage";
-import SingIn from "../pages/SignIn/SingIn";
 import ErrorPage from "../component/ErrorPage/ErrorPage";
-import Dashboard from "../pages/dashboard/Dashboard";
-// import Login from "../pages/SignIn/Login";
-import { itemData } from "../helper/tempData/profileData";
-import IndexPage from "../pages/IndexPage";
-import FaqId from "../pages/HomeCompnent/faq/FaqId";
+import Loader from "../component/loader/Loader";
+
+const IndexPage = lazy(() => import("../pages/IndexPage"));
+const FaqId = lazy(() => import("../pages/HomeCompnent/faq/FaqId"));
 
 const MyRoutes = () => {
   return (
     <>
       <Routes>
-        <Route index element={<IndexPage />} />
-        <Route path="/Home" element={<IndexPage />} />
+        <Route
+          index
+          element={
+            <Suspense fallback={<Loader />}>
+              <IndexPage />
+            </Suspense>
+          }
+        />
 
-        <Route path="/FaqId/:faqid" element={<FaqId />} />
+        <Route
+          path="/FaqId/:faqid"
+          element={
+            <Suspense fallback={<Loader />}>
+              <FaqId />
+            </Suspense>
+          }
+        />
 
-        <Route path="/Price" element={<Priceing />} />
-        <Route path="/SingIn" element={<SingIn />} />
-        <Route path="/SingIn" element={<Dashboard />} />
-        {/* <Route path="/login" element={<Login />} /> */}
-        <Route path="/Profile" element={<Clients itemData={itemData} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

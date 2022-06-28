@@ -6,60 +6,73 @@ import {
   ListItemAvatar,
   ListSubheader,
   Stack,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
 } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
+
 import { FaqDetail } from "../../../../../helper/context/FAQContext";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
 import useAxiosToGetData from "../../../../../helper/custemHook/useAxiosToGetData";
 import { UserDetail } from "../../../../../helper/context/userContext";
+import SendDirectMsg from "../../../../../component/directMsg/SendDirectMsq";
 
 function PepoleYouFollow() {
   const { userId } = useContext(UserDetail);
 
   const { data: dataFloewr, dataIsLoading: FloewrDataIsLoading } =
     useAxiosToGetData(`/user/showflower/${userId}`);
-  console.log(dataFloewr);
+  // console.log(dataFloewr);
   return (
     <>
       <Box sx={{ marginLeft: "7px", paddingTop: "7px" }}>
         <nav aria-label="main mailbox folders">
           <List
-            // dense
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            sx={{ width: "95%", maxWidth: 360, bgcolor: "background.paper" }}
             component="nav"
             aria-labelledby="nested-list-subheader"
             subheader={
               <ListSubheader component="div" id="nested-list-subheader">
                 <Stack
-                  direction={"row"}
-                  spacing={1}
+                  direction={"column"}
+                  // spacing={3}
                   justifyContent="space-between"
                   alignItems="center"
+                  // mb={4}
+                  sx={{
+                    borderBottom: "2px solid",
+                    padding: "5px",
+                    borderColor: "primary.light",
+                  }}
                 >
                   <FaUsers
                     color={"blue"}
-                    size={25}
+                    size={60}
                     flex={1}
                     style={{ margin: "auto" }}
                   />
-
-                  <Typography
-                    variant="caption"
-                    textAlign={"left"}
-                    flex={4}
-                    ml={1}
+                  <Box
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
                   >
-                    You Tracking
-                  </Typography>
-                  <Typography variant="caption" textAlign={"center"} flex={1}>
-                    {FloewrDataIsLoading && dataFloewr.length}
-                  </Typography>
+                    <Typography
+                      variant="caption"
+                      textAlign={"left"}
+                      flex={4}
+                      ml={1}
+                    >
+                      You Tracking
+                    </Typography>
+                    <Typography variant="caption" textAlign={"center"} flex={1}>
+                      {dataFloewr?.length}
+                    </Typography>
+                  </Box>
                 </Stack>
               </ListSubheader>
             }
@@ -67,8 +80,6 @@ function PepoleYouFollow() {
             {FloewrDataIsLoading && <ShowFlower datax={dataFloewr} />}
           </List>
         </nav>
-
-        <Divider />
       </Box>
     </>
   );
@@ -81,6 +92,7 @@ const ShowFlower = ({ datax }) => {
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedFaq, setSelectedFaq] = useState(false);
   const { setFaqUrl, setFaqInfo } = useContext(FaqDetail);
+  const [openDirectMsg, setOpenDirectMsg] = useState(false);
 
   const handleListItemClick = (index, catName) => {
     setSelectedIndex(index);
@@ -90,24 +102,30 @@ const ShowFlower = ({ datax }) => {
     setFaqUrl(`/faq/FaqByFollowerUser/${index}`);
     setFaqInfo({ titleName: catName, recordsCount: 0 });
   };
+  const handleDirectMsg = () => {
+    setOpenDirectMsg(true);
+  };
 
   return datax.map((catitem, index) => {
     return (
       <>
+        <SendDirectMsg
+          open={openDirectMsg}
+          setOpen={setOpenDirectMsg}
+          userName={"test"}
+        />
         <ListItem
           alignItems="flex-start"
           key={catitem.id}
-          disablePadding
-          // size={"small"}
-          disableGutters
+          // disablePadding
+          // disableGutters
           secondaryAction={
             <IconButton
-              // size="small"
               color="primary"
-              sx={{ marginRight: "3px", bgcolor: "whitesmoke" }}
+              sx={{ marginLeft: "3px", bgcolor: "background.paper" }}
               onClick={() => {
                 {
-                  alert(index);
+                  handleDirectMsg();
                 }
               }}
             >
@@ -127,9 +145,9 @@ const ShowFlower = ({ datax }) => {
             <ListItemAvatar sx={{ alignItems: "center" }}>
               <Avatar
                 size="small"
-                src={"http://localhost:3001/images/avatar/1653493960018_1.jpg"}
-                variant="rounded"
-                sx={{ width: 24, height: 24 }}
+                src={catitem.avatar}
+                // variant="rounded"
+                // sx={{ width: 24, height: 24 }}
               />
             </ListItemAvatar>
             <ListItemText

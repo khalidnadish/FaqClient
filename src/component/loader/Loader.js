@@ -1,7 +1,7 @@
 import React from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 import { Box } from "@mui/system";
-function Loader() {
+const Loader = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <LinearProgress />
@@ -10,6 +10,14 @@ function Loader() {
           <LinearProgress color="inherit" /> */}
     </Box>
   );
-}
+};
 
 export default Loader;
+
+export const WelcomLoader = () => {
+  return (
+    <Box sx={{ width: "50%" }}>
+      <LinearProgress color="success" />
+    </Box>
+  );
+};

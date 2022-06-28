@@ -14,7 +14,7 @@ export const CatWraper = styled(Paper)({
   marginRight: 20,
   marginBottom: "10px",
   borderRadius: "8px",
-  backgroundColor: "somkewhite",
+
   minWidth: "120px",
   bgcolor: "background.paper",
   border: "1px solid lightgray",
@@ -36,15 +36,16 @@ export const rootStackStyle = {
 
 export const FaqBoxStyle = {
   flex: 4,
-  width: { xs: "100vw", sm: "80vw", md: "100vw" },
+  width: { xs: "100vw", sm: "80vw", md: "auto" },
 };
+
 export const groupBoxStyle = { flex: 1, display: { xs: "none", sm: "block" } };
 export const postionGroupBoxStyle = {
   position: "fixed",
   width: "14%",
   border: ".5px solid lightgray",
   borderRadius: "8px",
-  height: "75vh",
+  height: "70vh",
   overflow: "auto",
   padding: "2px",
   display: {
@@ -67,10 +68,19 @@ export const postionFlowerBoxStyle = {
   height: "75vh",
   overflow: "auto",
   padding: "2px",
-  // bgcolor: "lightgray",
-
   display: {
     xs: "none",
     sm: "block",
   },
+};
+
+export const bodyContainer = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  // bgcolor: "red",
+  // height: "40vh",
+  width: "100%",
+  gap: 1,
 };

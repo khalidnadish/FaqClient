@@ -1,7 +1,7 @@
 import React from "react";
 
 function ErrorPage() {
-  return <div>404 ErrorPage</div>;
+  return <div>Page Not Fonud</div>;
 }
 
 export default ErrorPage;

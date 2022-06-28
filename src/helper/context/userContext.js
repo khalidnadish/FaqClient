@@ -9,7 +9,7 @@ export const UserProvider = (props) => {
   const [themeMode, setThemeMode] = useState("light");
 
   const [userAvatar, setUserAvatar] = useState(
-    "http://localhost:3001/images/avatar/1653493960018_1.jpg"
+    "http://localhost:3001/images/avatar/nadish.jpg"
   );
 
   return (

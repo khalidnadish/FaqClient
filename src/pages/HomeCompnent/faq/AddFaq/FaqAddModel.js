@@ -35,14 +35,13 @@ const modalStyle = {
 
   border: "1px solid #263238",
   boxShadow: 24,
-  bgcolor: blueGrey[100],
 
   overflow: "none",
 };
 
 const barStyleControl = {
-  bgcolor: blueGrey[300],
-
+  bgcolor: "warning.light",
+  borderRadius: "8px",
   boxShadow: 1,
   marginBottom: 3,
   padding: 1,
@@ -51,7 +50,7 @@ const barStyleControl = {
 };
 
 const infotStyleControl = {
-  bgcolor: blueGrey[50],
+  bgcolor: "background.paper",
 
   width: "95%",
   margin: "auto",
@@ -66,35 +65,18 @@ const infotStyleControl = {
 };
 
 const styleBtn = {
-  bgcolor: blueGrey[200],
-  color: "white",
+  bgcolor: "warning.main",
+  color: "background.paper",
 
   boxShadow: 1,
 
   padding: 1,
 };
 
-const noteStyle = {
-  bgcolor: blueGrey[200],
-  color: blueGrey[900],
-  display: "flex",
-  direction: "RTL",
-  textAlign: "right",
-  width: "90%",
-  padding: 1,
-};
-const subNoteStyle = {
-  bgcolor: blueGrey[400],
-  color: blueGrey[900],
-  textAlign: "right",
-  width: "100%",
-  padding: "5px",
-  margin: "5px",
-};
-
 const contentStyleControl = {
-  bgcolor: blueGrey[50],
-
+  bgcolor: "background.paper",
+  border: "1px solid",
+  borderColor: "warning.light",
   width: "95%",
   margin: "auto",
   boxShadow: 1,
@@ -104,7 +86,7 @@ const contentStyleControl = {
 };
 
 const quastionStyle = {
-  color: blueGrey[900],
+  color: "background.paper",
   textAlign: "right",
   width: "100%",
   padding: 1,
@@ -135,7 +117,6 @@ export default function FaqAddModel({ open, setOpen }) {
             styleBtn={styleBtn}
           />
           <InfoArea sx={{ display: { xs: "none" } }} />
-
           <ContentArea />
         </Box>
       </Modal>
@@ -182,12 +163,14 @@ function InfoArea() {
         divider={<Divider orientation="horizontal" />}
         sx={infotStyleControl}
       >
-        <Typography>نصائح حول الحصول على إجابات جيدة بسرعة</Typography>
-        <Typography>تأكد من أن سؤالك لم يتم طرحه من قبل</Typography>
-        <Typography>يجب أن يكون سؤالك قصيرًا وواضحًا</Typography>
-        <Typography>
-          تحقق مرة أخرى من قواعد اللغة والإملاء واستخدم اللغة العربية الفصحى
-          الحديثة
+        <Typography variant="caption">
+          تأكد من أن سؤالك لم يتم طرحه من قبل
+        </Typography>
+        <Typography variant="caption">
+          يجب أن يكون سؤالك قصيرًا وواضحًا
+        </Typography>
+        <Typography variant="caption">
+          تحقق من قواعد اللغة والإملاء واستخدم اللغة العربية الفصحى الحديثة
         </Typography>
       </Stack>
     </Box>

@@ -1,62 +1,28 @@
-import React, { useContext } from "react";
-import { UserDetail } from "./helper/context/userContext";
+import React, { lazy, Suspense } from "react";
 import { FAQProvider } from "../src/helper/context/FAQContext";
-import ResponsiveAppBar from "./component/Navbar/Navbar";
-import { purple } from "@mui/material/colors";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-
-import { Stack, Box, CssBaseline } from "@mui/material";
-
-import MyRoutes from "./layout/MyRoutes";
-import Myfooter from "./component/footer/footer";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, Paper } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { theme } from "./layout/theme";
+import { WelcomLoader } from "./component/loader/Loader";
+// import { CssVarsProvider } from "@mui/joy/styles";
 
-import "./App.css";
+const MyRoutes = lazy(() => import("./layout/MyRoutes"));
 
 function App() {
-  const { themeMode } = useContext(UserDetail);
-  const theme = createTheme({
-    palette: {
-      mode: themeMode,
-      primary: {
-        // Purple and green play nicely together.
-        main: purple[500],
-      },
-    },
-    typography: {
-      allVariants: {
-        fontFamily: "Noto Kufi Arabic",
-        fontWeight: "light",
-        textTransform: "none",
-        wordWrap: "break-word",
-        // fontSize: ".8rem",
-      },
-      paper: {
-        background: "red",
-      },
-    },
-  });
-
   return (
     <>
       <CssBaseline />
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <FAQProvider>
-            {/* <Paper> */}
-            <ResponsiveAppBar />
-            <Box sx={{ position: "fixed", left: "3px", top: "80%" }}></Box>
-            <Box m={4}>
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={1}
-                justifyContent="center"
-              >
+            <Toaster />
+            <Paper>
+              <Suspense fallback={<WelcomLoader />}>
                 <MyRoutes />
-              </Stack>
-            </Box>
-            <Myfooter />
-            {/* </Paper> */}
+              </Suspense>
+            </Paper>
           </FAQProvider>
         </ThemeProvider>
       </BrowserRouter>
@@ -64,5 +30,3 @@ function App() {
   );
 }
 export default App;
-
-// export default App;

@@ -1,96 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 
-import { Box, height } from "@mui/system";
-import { Divider, Stack } from "@mui/material";
+import { Box } from "@mui/system";
+import { GrLike, GrDislike } from "react-icons/gr";
+
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Chip,
+  Divider,
+} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import { axios } from "../../../../helper/axios/axios";
+import useAxiosToGetData from "../../../../helper/custemHook/useAxiosToGetData";
 import styled from "@emotion/styled";
-import { FcPlanner } from "react-icons/fc";
 
 const ProfileBoxwraper = styled(Box)({
-  backgroundColor: "whitesmoke",
-  width: "100%",
+  // backgroundColor: "whitesmoke",
+  // width: "100%",
   borderRadius: "8px",
-  display: "flex",
+  // flexDirection: "row",
   justifyContent: "space-between",
+  // display: "flex",
 
   display: { xs: "block", sm: "block" },
 });
-const SinglePost = styled(Box)({
-  backgroundColor: "pink",
-  display: "flex",
-  flexDirection: "column",
-  flex: 8,
-  // border: "1px solid black",
-  borderRadius: "8px 8px 0px 0px",
-  marginTop: "15px",
-  marginBottom: "15px",
-  display: "flex",
-  padding: "10px",
-
-  // justifyContent: "flex-start",
-  // alignItems: "flex-start",
-
-  position: "relative",
-
-  marginBottom: "100px",
-  "&::before": {
-    backgroundColor: "pink",
-    content: '""',
-    display: "block",
-    position: "absolute",
-    borderColor: "black",
-    width: 12,
-    height: 12,
-    top: 18,
-    transform: "rotate(45deg)",
-    left: "calc(1% - 11px)",
-  },
-});
-
-const AvtarBox = styled(Box)({
-  flex: 0.25,
-  marginTop: "15px",
-  marginBottom: "15px",
-});
 
 export default function FaqAnswerId({ id }) {
-  const [faqwithid, setFaqWithId] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const getFaqId = async () => {
-    try {
-      const resposn = await axios.get(`faq/AnswerByfaqid/${id}`);
-      if (resposn && resposn.data) {
-        // console.log(resposn);
-        setFaqWithId(resposn.data.data);
-
-        setIsLoading(true);
-        // console.log("replay :" + resposn.data);
-      }
-    } catch (error) {
-      // console.log("Error :", error);
-    }
-  };
-  // console.log("data reply:" + faqwithid);
-  // console.log(faqwithid);
-
-  useEffect(() => {
-    getFaqId();
-  }, []);
+  const { data: faqwithid, dataIsLoading: isLoading } = useAxiosToGetData(
+    `faq/AnswerByfaqid/${id}`
+  );
 
   return (
     <>
-      <Box alignItems="center">
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          divider={<Divider orientation="vertical" flexItem />}
-        >
-          {isLoading && <ShowReplay faqdata={faqwithid} />}
-        </Stack>
-      </Box>
+      <Box mt={1}></Box>
+      {isLoading && <ShowReplay faqdata={faqwithid} />}
     </>
   );
 }
@@ -101,82 +46,82 @@ const ShowReplay = ({ faqdata }) => {
       <ProfileBoxwraper>
         {faqdata.map((faqItem, idx) => (
           <>
-            <Stack
-              direction="row"
-              spacing={2}
-              justifyContent={idx === 3 ? "flex-start" : "flex-End"}
-              alignItems="center"
-              sx={{ marginTop: "15px" }}
-              // divider={
-              //   <Divider
-              //     orientation="vertical"
-              //     sx={{ margin: "0px" }}
-              //     flexItem
-              //   />
-              // }
-              key={faqItem.ansid}
-            >
-              <AvtarBox>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={faqItem.avatar}
-                  // sx={{ width: 30, height: 24 }}
-                ></Avatar>
-              </AvtarBox>
-
-              <SinglePost>
-                <Box>
-                  <Typography
-                    sx={{
-                      overflow: "auto",
-                      resize: "both",
-                      minHeight: "40px",
-                      width: "100%",
-                      justifyContent: "flex-end",
-                      // border: "1px solid",
-
-                      // display: "block",
-                      // margin: "auto",
-                    }}
-                  >
-                    {faqItem.answer}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    justifyContent: "flex-end",
-
-                    position: "absolute",
-                    top: "90%",
-                    // bottom: "100%",
-                    right: "0px",
-                    backgroundColor: "pink",
-
-                    borderRadius: "8px",
-                    paddingLeft: "10px",
-                  }}
-                >
-                  <FcPlanner />
-                  <Typography
-                    sx={{
-                      fontSize: "10px",
-                      fontWeight: "normal",
-                      marginRight: "10px",
-                      marginLeft: "10px",
-                      float: "right",
-                      // border:"1px solid"  ,
-                    }}
-                  >
-                    {new Date(faqItem.create_at).toDateString()}
-                  </Typography>
-                </Box>
-              </SinglePost>
-            </Stack>
-
-            {/* <Divider /> */}
+            <Answercard
+              avatar={faqItem.avatar}
+              userName={faqItem.username}
+              createDate={new Date(faqItem.create_at).toDateString()}
+              faq={faqItem.answer}
+              rowIndex={idx}
+            />
           </>
         ))}
       </ProfileBoxwraper>
     </>
   );
 };
+
+const cardStyle = {
+  width: { sx: "95%", sm: "95%", md: "95%", lg: "95%" },
+  // border: `.5px solid`,
+  borderTop: "15px solid",
+  borderColor: "success.main",
+  borderRadius: "8px",
+  marginBottom: "15px",
+  // alignItems: "right",
+  float: "right",
+};
+
+function Answercard({
+  avatar,
+  userName,
+  createDate,
+  faq,
+
+  rowIndex,
+}) {
+  return (
+    <>
+      <Card sx={cardStyle}>
+        <CardHeader
+          avatar={
+            <Avatar src={avatar} aria-label="recipe">
+              R
+            </Avatar>
+          }
+          action={
+            <Chip
+              label={rowIndex + 1}
+              size="small"
+              sx={{ backgroundColor: "success.light", color: "white" }}
+            />
+          }
+          title={<Typography variant="body1">{userName}</Typography>}
+          subheader={<Typography variant="caption">{createDate}</Typography>}
+          // sx={{ backgroundColor: "warning.light", color: "white" }}
+        />
+        <Divider />
+
+        <CardContent
+          sx={{
+            borderRight: "3px solid",
+            borderLeft: "3px solid",
+            borderColor: "success.main",
+          }}
+        >
+          <Typography variant="body2" color="text.secondary">
+            {faq}
+          </Typography>
+        </CardContent>
+        <Divider sx={{ marginBottom: "15px" }} />
+        <CardActions disableSpacing>
+          <Box sx={{ marginLeft: "20px" }}>
+            <GrLike color="action" size={18} />
+          </Box>
+          <Box sx={{ marginLeft: "20px" }}>
+            <GrDislike color="action" size={18} />
+          </Box>
+        </CardActions>
+      </Card>
+    </>
+  );
+}

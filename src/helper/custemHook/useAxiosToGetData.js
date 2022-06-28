@@ -23,7 +23,7 @@ const useAxiosToGetData = (urlx) => {
   useEffect(() => {
     collectData(urlx);
   }, [urlx]);
-  console.table(data);
+  // console.table(data);
   return { data, error, dataIsLoading };
 };
 
